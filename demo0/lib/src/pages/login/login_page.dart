@@ -29,18 +29,20 @@ class _LoginPageState extends State<LoginPage> {
       ),
       body: Container(
         color: Colors.black87,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            SizedBox(
-              height: 50,
-            ),
-            Image.asset(Asset.logoImage),
-            SizedBox(
-              height: 30,
-            ),
-            LoginForm()
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              SizedBox(
+                height: 50,
+              ),
+              Image.asset(Asset.logoImage),
+              SizedBox(
+                height: 30,
+              ),
+              LoginForm()
+            ],
+          ),
         ),
       ),
     );

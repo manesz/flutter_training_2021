@@ -60,9 +60,14 @@ class _LoginFormState extends State<LoginForm> {
   Widget build(BuildContext context) {
     return Card(
       child: Column(
-        children: [
-          Text("Username"),
-          Text("Password"),
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: const [
+          TextField(decoration: InputDecoration(
+            border: InputBorder.none,
+            hintText: 'codemobiles@gmail.com',
+            labelText: 'Username',
+            icon: Icon(Icons.email),
+          ),)
         ],
       ),
     );

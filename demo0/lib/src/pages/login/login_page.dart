@@ -16,7 +16,7 @@ class _LoginPageState extends State<LoginPage> {
         actions: [
           IconButton(
             onPressed: () {
-              print("1234");
+              print(DateTime.now());
             },
             icon: Icon(Icons.navigate_next),
           ),

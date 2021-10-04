@@ -92,6 +92,7 @@ class _LoginFormState extends State<LoginForm> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             TextField(
+              controller: _usernameController,
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText: 'codemobiles@gmail.com',
@@ -100,6 +101,7 @@ class _LoginFormState extends State<LoginForm> {
               ),
             ),
             TextField(
+              controller: _passwordController,
               obscureText: true,
               decoration: InputDecoration(
                 border: InputBorder.none,
@@ -108,7 +110,9 @@ class _LoginFormState extends State<LoginForm> {
                 icon: Icon(Icons.password_outlined),
               ),
             ),
-            ElevatedButton(onPressed: () {}, child: Text("Login")),
+            ElevatedButton(onPressed: () {
+              print("username: ${_usernameController.text}, password: ${_passwordController.text}");
+            }, child: Text("Login")),
           ],
         ),
       ),

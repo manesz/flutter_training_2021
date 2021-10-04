@@ -110,9 +110,7 @@ class _LoginFormState extends State<LoginForm> {
                 icon: Icon(Icons.password_outlined),
               ),
             ),
-            ElevatedButton(onPressed: () {
-              print("username: ${_usernameController.text}, password: ${_passwordController.text}");
-            }, child: Text("Login")),
+            ElevatedButton(onPressed: _login, child: Text("Login")),
           ],
         ),
       ),

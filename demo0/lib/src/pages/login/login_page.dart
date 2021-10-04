@@ -58,6 +58,13 @@ class LoginForm extends StatefulWidget {
 class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
-    return Container(height: 100, width: 100, color: Colors.red,);
+    return Card(
+      child: Column(
+        children: [
+          Text("Username"),
+          Text("Password"),
+        ],
+      ),
+    );
   }
 }

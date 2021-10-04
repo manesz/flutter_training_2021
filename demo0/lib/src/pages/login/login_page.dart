@@ -47,6 +47,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 }
 
+// LoginForm
 class LoginForm extends StatefulWidget {
   const LoginForm({Key? key}) : super(key: key);
 
@@ -57,6 +58,6 @@ class LoginForm extends StatefulWidget {
 class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(height: 100, width: 100, color: Colors.red,);
   }
 }

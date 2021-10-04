@@ -1,6 +1,7 @@
 import 'dart:ffi';
 
 import 'package:demo0/src/configs/app_routes.dart';
+import 'package:demo0/src/constants/asset.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -27,11 +28,11 @@ class _LoginPageState extends State<LoginPage> {
         ],
       ),
       body: Container(
-        color: Colors.yellow,
+        color: Colors.black87,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Image.asset("assets/images/logo.png"),
+            Image.asset(Asset.logoImage),
             Text("Y"),
             Text("Z"),
           ],

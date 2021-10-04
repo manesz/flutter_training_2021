@@ -32,6 +32,9 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            SizedBox(
+              height: 50,
+            ),
             Image.asset(Asset.logoImage),
             Text("Y"),
             Text("Z"),

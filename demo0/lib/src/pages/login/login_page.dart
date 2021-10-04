@@ -1,3 +1,4 @@
+import 'package:demo0/src/configs/app_routes.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -17,12 +18,19 @@ class _LoginPageState extends State<LoginPage> {
           IconButton(
             onPressed: () {
               print(DateTime.now());
+              Navigator.pushNamed(context, AppRoute.home);
             },
             icon: Icon(Icons.navigate_next),
           ),
         ],
       ),
-      body: Container(),
+      body: Column(
+        children: [
+          Text("X"),
+          Text("Y"),
+          Text("Z"),
+        ],
+      ),
     );
   }
 }

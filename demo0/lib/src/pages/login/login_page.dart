@@ -60,28 +60,31 @@ class _LoginFormState extends State<LoginForm> {
   Widget build(BuildContext context) {
     return Card(
       margin: const EdgeInsets.only(bottom: 24, left: 32, right: 32),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          TextField(
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              hintText: 'codemobiles@gmail.com',
-              labelText: 'Username',
-              icon: Icon(Icons.email),
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            TextField(
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: 'codemobiles@gmail.com',
+                labelText: 'Username',
+                icon: Icon(Icons.email),
+              ),
             ),
-          ),
-          TextField(
-            obscureText: true,
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              hintText: 'Enter password',
-              labelText: 'Password',
-              icon: Icon(Icons.password_outlined),
+            TextField(
+              obscureText: true,
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: 'Enter password',
+                labelText: 'Password',
+                icon: Icon(Icons.password_outlined),
+              ),
             ),
-          ),
-          ElevatedButton(onPressed: (){}, child: Text("Login")),
-        ],
+            ElevatedButton(onPressed: (){}, child: Text("Login")),
+          ],
+        ),
       ),
     );
   }

@@ -41,12 +41,16 @@ class _LoginPageState extends State<LoginPage> {
                 height: 30,
               ),
               LoginForm(),
-              _textButton(title: "register", onPressed: () {
-                print("register");
-              }),
-              _textButton(title: "forgot password", onPressed: () {
-                print("forgot password");
-              }),
+              _textButton(
+                  title: "register",
+                  onPressed: () {
+                    print("register");
+                  }),
+              _textButton(
+                  title: "forgot password",
+                  onPressed: () {
+                    print("forgot password");
+                  }),
             ],
           ),
         ),
@@ -55,7 +59,14 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   _textButton({required String title, required VoidCallback onPressed}) {
-    return TextButton(child: Text(title), onPressed: onPressed,);
+    return TextButton(
+      child: Text(
+        title,
+        style:
+            const TextStyle(color: Colors.white60, fontWeight: FontWeight.w500),
+      ),
+      onPressed: onPressed,
+    );
   }
 }
 

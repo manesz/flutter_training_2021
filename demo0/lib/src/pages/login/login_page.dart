@@ -40,7 +40,8 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(
                 height: 30,
               ),
-              LoginForm()
+              LoginForm(),
+              TextButton(child: Text("Register"), onPressed: (){},)
             ],
           ),
         ),

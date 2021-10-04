@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:demo0/src/configs/app_routes.dart';
 import 'package:flutter/material.dart';
 
@@ -24,12 +26,16 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          Text("X"),
-          Text("Y"),
-          Text("Z"),
-        ],
+      body: Container(
+        color: Colors.yellow,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text("X"),
+            Text("Y"),
+            Text("Z"),
+          ],
+        ),
       ),
     );
   }

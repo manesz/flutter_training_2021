@@ -58,8 +58,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  _textButton({required String title, required VoidCallback onPressed}) {
-    return TextButton(
+  _textButton({required String title, required VoidCallback onPressed}) => TextButton(
       child: Text(
         title,
         style:
@@ -67,7 +66,6 @@ class _LoginPageState extends State<LoginPage> {
       ),
       onPressed: onPressed,
     );
-  }
 }
 
 // LoginForm

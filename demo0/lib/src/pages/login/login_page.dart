@@ -59,6 +59,7 @@ class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     return Card(
+      margin: const EdgeInsets.only(bottom: 24, left: 32, right: 32),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [

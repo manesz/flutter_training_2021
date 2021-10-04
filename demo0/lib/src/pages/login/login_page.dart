@@ -41,12 +41,17 @@ class _LoginPageState extends State<LoginPage> {
                 height: 30,
               ),
               LoginForm(),
-              TextButton(child: Text("Register"), onPressed: (){},)
+              _textButton("register"),
+              _textButton("forgot password"),
             ],
           ),
         ),
       ),
     );
+  }
+
+  _textButton(String title) {
+    return TextButton(child: Text(title), onPressed: (){},);
   }
 }
 

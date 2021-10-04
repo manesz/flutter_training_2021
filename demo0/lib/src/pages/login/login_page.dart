@@ -122,12 +122,13 @@ class _LoginFormState extends State<LoginForm> {
     final username = _usernameController.text;
     final password = _passwordController.text;
     if (username == 'admin' && password == 'password') {
-
       // method 1
       //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> HomePage(),),);
 
       // method 2
-      Navigator.pushReplacementNamed(context, AppRoute.home);
+      Navigator.pushNamed(context, AppRoute.home);
+    }else{
+      print("Login failed");
     }
   }
 }

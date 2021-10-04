@@ -28,6 +28,7 @@ class _LoginPageState extends State<LoginPage> {
         ],
       ),
       body: Container(
+        height: double.infinity,
         color: Colors.black87,
         child: SingleChildScrollView(
           child: Column(

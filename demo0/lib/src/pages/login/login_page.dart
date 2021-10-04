@@ -13,6 +13,14 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Login"),
+        actions: [
+          IconButton(
+            onPressed: () {
+              print("1234");
+            },
+            icon: Icon(Icons.navigate_next),
+          ),
+        ],
       ),
       body: Container(),
     );

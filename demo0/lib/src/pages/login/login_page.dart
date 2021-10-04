@@ -61,13 +61,25 @@ class _LoginFormState extends State<LoginForm> {
     return Card(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: const [
-          TextField(decoration: InputDecoration(
-            border: InputBorder.none,
-            hintText: 'codemobiles@gmail.com',
-            labelText: 'Username',
-            icon: Icon(Icons.email),
-          ),)
+        children: [
+          TextField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: 'codemobiles@gmail.com',
+              labelText: 'Username',
+              icon: Icon(Icons.email),
+            ),
+          ),
+          TextField(
+            obscureText: true,
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: 'Enter password',
+              labelText: 'Password',
+              icon: Icon(Icons.password_outlined),
+            ),
+          ),
+          ElevatedButton(onPressed: (){}, child: Text("Login")),
         ],
       ),
     );

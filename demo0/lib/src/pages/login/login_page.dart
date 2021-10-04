@@ -36,11 +36,27 @@ class _LoginPageState extends State<LoginPage> {
               height: 50,
             ),
             Image.asset(Asset.logoImage),
-            Text("Y"),
-            Text("Z"),
+            SizedBox(
+              height: 30,
+            ),
+            LoginForm()
           ],
         ),
       ),
     );
+  }
+}
+
+class LoginForm extends StatefulWidget {
+  const LoginForm({Key? key}) : super(key: key);
+
+  @override
+  _LoginFormState createState() => _LoginFormState();
+}
+
+class _LoginFormState extends State<LoginForm> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
   }
 }

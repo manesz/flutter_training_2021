@@ -12,7 +12,7 @@ class ProductItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Column(
-        children: [Text("top: "), Text("bottom: ")],
+        children: [Text("top: ${product.name}"), Text("bottom: ${product.price}")],
       ),
     );
   }

@@ -1,4 +1,6 @@
+import 'package:demo0/src/constants/network_api.dart';
 import 'package:demo0/src/models/product.dart';
+import 'package:demo0/src/widgets/image_not_found.dart';
 import 'package:flutter/material.dart';
 
 class ProductItem extends StatelessWidget {
@@ -30,14 +32,30 @@ class ProductItem extends StatelessWidget {
         SizedBox(
           width: double.infinity,
           height: height,
-          child: Container(
-            color: Colors.red,
-          ),
+          child: image != null && image.isNotEmpty
+              ? _image(image)
+              : ImageNotFound(),
         ),
         if (stock <= 0) _buildOutOfStock(),
       ],
     );
   }
+
+  Image _image(String image) {
+    String imageUrl;
+    if (image.contains("://")) {
+      imageUrl = image;
+    } else {
+      imageUrl = '${NetworkAPI.imageURL}/$image';
+    }
+
+    return Image.network(
+      imageUrl,
+      width: double.infinity,
+      fit: BoxFit.cover,
+    );
+  }
+
 
   Positioned _buildOutOfStock() => const Positioned(
         top: 2,

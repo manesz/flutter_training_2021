@@ -79,20 +79,23 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildGridView(List<Product> products) {
-    return GridView.builder(
-      padding: const EdgeInsets.only(top:10),
-      itemBuilder: (context, index) {
-        return ProductItem(product: products[index],
-          onTap: (){
-            print(products[index].name);
-          },);
-      },
-      itemCount: products.length,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        crossAxisSpacing: 1,
-        mainAxisSpacing: 1,
-        childAspectRatio: 0.76, // set height ratio -  (itemWidth / itemHeight)
+    return RefreshIndicator(
+      onRefresh: ()=>{},
+      child: GridView.builder(
+        padding: const EdgeInsets.only(top:10),
+        itemBuilder: (context, index) {
+          return ProductItem(product: products[index],
+            onTap: (){
+              print(products[index].name);
+            },);
+        },
+        itemCount: products.length,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 1,
+          mainAxisSpacing: 1,
+          childAspectRatio: 0.76, // set height ratio -  (itemWidth / itemHeight)
+        ),
       ),
     );
   }

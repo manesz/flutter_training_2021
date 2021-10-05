@@ -13,8 +13,8 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
+    return TextButton(
+      onPressed: onTap,
       child: LayoutBuilder(
         builder: (context, constraint)=> Container(
           child: Column(

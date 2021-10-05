@@ -16,7 +16,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-
     List<String> dummy = ["Angular", "React", "Flutter"];
 
     return Scaffold(
@@ -36,8 +35,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: FutureBuilder<List<Product>>(
         future: NetworkService().getProduct(),
-        builder: (context, snapshot){
-
+        builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return Container(color: Colors.white);
           }
@@ -45,7 +43,10 @@ class _HomePageState extends State<HomePage> {
           final products = snapshot.data ?? [];
           return ListView.builder(
             itemBuilder: (context, index) {
-              return ProductItem(product: products[index]);
+              return SizedBox(
+                child: ProductItem(product: products[index]),
+                height: 350,
+              );
             },
             itemCount: products.length,
           );

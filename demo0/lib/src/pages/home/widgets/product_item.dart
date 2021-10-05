@@ -1,3 +1,4 @@
+import 'package:demo0/src/app.dart';
 import 'package:demo0/src/constants/network_api.dart';
 import 'package:demo0/src/models/product.dart';
 import 'package:demo0/src/widgets/image_not_found.dart';
@@ -12,12 +13,14 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          _buildImage(300),
-          Text("bottom: ${product.price}"),
-        ],
+    return LayoutBuilder(
+      builder: (context, constraint)=> Container(
+        child: Column(
+          children: [
+            _buildImage(constraint.maxHeight),
+            _buildInfo(),
+          ],
+        ),
       ),
     );
   }
@@ -49,7 +52,7 @@ class ProductItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            product.name ?? "-",
+            product.name,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
           ),

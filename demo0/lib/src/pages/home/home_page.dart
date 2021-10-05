@@ -1,5 +1,6 @@
 import 'package:demo0/src/configs/app_routes.dart';
 import 'package:demo0/src/constants/app_setting.dart';
+import 'package:demo0/src/services/network_service.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -22,10 +23,12 @@ class _HomePageState extends State<HomePage> {
         actions: [
           IconButton(
             onPressed: () async {
-              SharedPreferences prefs = await SharedPreferences.getInstance();
-              prefs.remove(AppSetting.token);
-              prefs.remove(AppSetting.username);
-              Navigator.pushReplacementNamed(context, AppRoute.login);
+              // SharedPreferences prefs = await SharedPreferences.getInstance();
+              // prefs.remove(AppSetting.token);
+              // prefs.remove(AppSetting.username);
+              // Navigator.pushReplacementNamed(context, AppRoute.login);
+              final result = await NetworkService().getProduct();
+              print(result[0].name);
             },
             icon: const Icon(Icons.logout),
           )

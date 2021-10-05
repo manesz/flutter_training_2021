@@ -20,7 +20,7 @@ class App extends StatelessWidget {
 
 _initialPage() {
 
-  return FutureBuilder(
+  return FutureBuilder<SharedPreferences>(
       future: SharedPreferences.getInstance(),
       builder: (context, snapshot){
         // default view for transient duration
@@ -28,14 +28,8 @@ _initialPage() {
           return Container(color: Colors.white);
         }
 
-        return LoginPage();
+        final token = snapshot.data?.getString(AppSetting.token) ?? "";
+        return token.isEmpty ? LoginPage() : HomePage();
       });
 
-
-
-
-  //
-  // SharedPreferences prefs = await SharedPreferences.getInstance();
-  // final token = prefs.getString(AppSetting.token) ?? "";
-  // return token.isEmpty ? LoginPage() : HomePage();
 }

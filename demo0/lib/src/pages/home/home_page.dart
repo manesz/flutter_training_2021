@@ -28,7 +28,12 @@ class _HomePageState extends State<HomePage> {
           )
         ],
       ),
-      body: Container(),
+      body: ListView.builder(
+        itemBuilder: (context, index) {
+          return Text("1234");
+        },
+        itemCount: 10,
+      ),
     );
   }
 }

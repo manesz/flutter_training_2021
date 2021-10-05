@@ -14,6 +14,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  var _isGrid = false;
+
   @override
   Widget build(BuildContext context) {
     List<String> dummy = ["Angular", "React", "Flutter"];
@@ -23,6 +26,10 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text("Home"),
         actions: [
+          IconButton(
+            onPressed: (){},
+            icon: _isGrid ? const Icon(Icons.grid_3x3) : const Icon(Icons.list) ,
+          ),
           IconButton(
             onPressed: () async {
               SharedPreferences prefs = await SharedPreferences.getInstance();

@@ -13,13 +13,16 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraint)=> Container(
-        child: Column(
-          children: [
-            _buildImage(constraint.maxHeight),
-            _buildInfo(),
-          ],
+    return GestureDetector(
+      onTap: onTap,
+      child: LayoutBuilder(
+        builder: (context, constraint)=> Container(
+          child: Column(
+            children: [
+              _buildImage(constraint.maxHeight),
+              _buildInfo(),
+            ],
+          ),
         ),
       ),
     );

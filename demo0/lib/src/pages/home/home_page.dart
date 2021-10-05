@@ -13,6 +13,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+
+    List<String> dummy = ["Angular", "React", "Flutter"];
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Home"),
@@ -30,9 +33,9 @@ class _HomePageState extends State<HomePage> {
       ),
       body: ListView.builder(
         itemBuilder: (context, index) {
-          return Text("1234");
+          return Text(dummy[index]);
         },
-        itemCount: 10,
+        itemCount: dummy.length,
       ),
     );
   }

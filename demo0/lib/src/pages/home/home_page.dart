@@ -1,5 +1,6 @@
 import 'package:demo0/src/configs/app_routes.dart';
 import 'package:demo0/src/constants/app_setting.dart';
+import 'package:demo0/src/models/product.dart';
 import 'package:demo0/src/services/network_service.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -32,13 +33,20 @@ class _HomePageState extends State<HomePage> {
           )
         ],
       ),
-      body: FutureBuilder(
+      body: FutureBuilder<List<Product>>(
+        future: NetworkService().getProduct(),
         builder: (context, snapshot){
+
+          if (!snapshot.hasData) {
+            return Container(color: Colors.white);
+          }
+
+          final products = snapshot.data ?? [];
           return ListView.builder(
             itemBuilder: (context, index) {
-              return Text(dummy[index]);
+              return Text(products[index].name);
             },
-            itemCount: dummy.length,
+            itemCount: products.length,
           );
         },
       ),

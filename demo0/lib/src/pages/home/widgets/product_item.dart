@@ -41,6 +41,42 @@ class ProductItem extends StatelessWidget {
     );
   }
 
+  Expanded _buildInfo() => Expanded(
+    child: Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            product.name ?? "-",
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                '฿${formatCurrency.format(product.price)}',
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Text(
+                '${formatNumber.format(product.stock)} pieces',
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.deepOrangeAccent,
+                ),
+              ),
+            ],
+          )
+        ],
+      ),
+    ),
+  );
+
+
   Image _image(String image) {
     String imageUrl;
     if (image.contains("://")) {

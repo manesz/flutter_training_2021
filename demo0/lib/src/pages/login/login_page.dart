@@ -127,7 +127,9 @@ class _LoginFormState extends State<LoginForm> {
       //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> HomePage(),),);
 
       // method 2
-      SharedPreferences pref = await SharedPreferences.getInstance();
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setString(AppSetting.token, 'TExkgk0494oksrkf');
+      await prefs.setString(AppSetting.username, username);
 
       Navigator.pushReplacementNamed(context, AppRoute.home);
     }else{

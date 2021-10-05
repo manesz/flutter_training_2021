@@ -125,8 +125,9 @@ class _LoginFormState extends State<LoginForm> {
       // method 1
       //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> HomePage(),),);
 
+
       // method 2
-      Navigator.pushNamed(context, AppRoute.home);
+      Navigator.pushReplacementNamed(context, AppRoute.home);
     }else{
       print("Login failed");
     }

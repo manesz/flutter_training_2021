@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:demo0/src/configs/app_routes.dart';
 import 'package:demo0/src/constants/app_setting.dart';
 import 'package:demo0/src/models/product.dart';
@@ -14,7 +16,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
+  final _refreshController = StreamController<void>();
   var _isGrid = false;
 
   @override
@@ -45,16 +47,21 @@ class _HomePageState extends State<HomePage> {
           )
         ],
       ),
-      body: FutureBuilder<List<Product>>(
-        future: NetworkService().getProduct(),
-        builder: (context, snapshot) {
-          if (!snapshot.hasData) {
-            return Container(color: Colors.white);
-          }
+      body: StreamBuilder(
+        stream: ,
+          builder: (context, snapshot) {
+            return FutureBuilder<List<Product>>(
+              future: NetworkService().getProduct(),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return Container(color: Colors.white);
+                }
 
-          final products = snapshot.data ?? [];
-          return _isGrid ? _buildGridView(products) : _buildListView(products);
-        },
+                final products = snapshot.data ?? [];
+                return _isGrid ? _buildGridView(products) : _buildListView(products);
+              },
+            );
+          },
       ),
     );
   }

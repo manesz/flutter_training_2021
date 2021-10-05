@@ -16,4 +16,23 @@ class ProductItem extends StatelessWidget {
       ),
     );
   }
+
+
+  Positioned _buildOutOfStock() => Positioned(
+    top: 2,
+    right: 2,
+    child: Card(
+      color: Colors.amber,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+        child: Text(
+          'out of stock',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 12,
+          ),
+        ),
+      ),
+    ),
+  );
 }

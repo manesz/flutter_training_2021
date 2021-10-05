@@ -16,8 +16,8 @@ class ProductItem extends StatelessWidget {
     return TextButton(
       onPressed: onTap,
       child: LayoutBuilder(
-        builder: (context, constraint)=> Container(
-          child: Container(
+        builder: (context, constraint) => Container(
+          child: Card(
             color: Colors.white,
             child: Column(
               children: [
@@ -51,40 +51,39 @@ class ProductItem extends StatelessWidget {
   }
 
   Expanded _buildInfo() => Expanded(
-    child: Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            product.name,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-          ),
-          Row(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                '฿${formatCurrency.format(product.price)}',
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
+                product.name,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
               ),
-              Text(
-                '${formatNumber.format(product.stock)} pieces',
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.deepOrangeAccent,
-                ),
-              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    '฿${formatCurrency.format(product.price)}',
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    '${formatNumber.format(product.stock)} pieces',
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.deepOrangeAccent,
+                    ),
+                  ),
+                ],
+              )
             ],
-          )
-        ],
-      ),
-    ),
-  );
-
+          ),
+        ),
+      );
 
   Image _image(String image) {
     String imageUrl;
@@ -100,7 +99,6 @@ class ProductItem extends StatelessWidget {
       fit: BoxFit.cover,
     );
   }
-
 
   Positioned _buildOutOfStock() => const Positioned(
         top: 2,

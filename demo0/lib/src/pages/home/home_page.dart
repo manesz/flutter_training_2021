@@ -23,22 +23,24 @@ class _HomePageState extends State<HomePage> {
         actions: [
           IconButton(
             onPressed: () async {
-              // SharedPreferences prefs = await SharedPreferences.getInstance();
-              // prefs.remove(AppSetting.token);
-              // prefs.remove(AppSetting.username);
-              // Navigator.pushReplacementNamed(context, AppRoute.login);
-              final result = await NetworkService().getProduct();
-              print(result[0].name);
+              SharedPreferences prefs = await SharedPreferences.getInstance();
+              prefs.remove(AppSetting.token);
+              prefs.remove(AppSetting.username);
+              Navigator.pushReplacementNamed(context, AppRoute.login);
             },
             icon: const Icon(Icons.logout),
           )
         ],
       ),
-      body: ListView.builder(
-        itemBuilder: (context, index) {
-          return Text(dummy[index]);
+      body: FutureBuilder(
+        builder: (context, snapshot){
+          return ListView.builder(
+            itemBuilder: (context, index) {
+              return Text(dummy[index]);
+            },
+            itemCount: dummy.length,
+          );
         },
-        itemCount: dummy.length,
       ),
     );
   }

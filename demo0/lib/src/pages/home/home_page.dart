@@ -19,7 +19,7 @@ class _HomePageState extends State<HomePage> {
     List<String> dummy = ["Angular", "React", "Flutter"];
 
     return Scaffold(
-      backgroundColor: Colors.grey[400],
+      backgroundColor: Colors.grey[200],
       appBar: AppBar(
         title: Text("Home"),
         actions: [
@@ -64,6 +64,32 @@ class _HomePageState extends State<HomePage> {
         );
       },
       itemCount: products.length,
+    );
+  }
+
+  Widget _buildGridView(List<Product> products) {
+    return GridView.builder(
+      padding: const EdgeInsets.only(top:10),
+      itemBuilder: (context, index) {
+        return Padding(
+          padding: const EdgeInsets.only(left: 8, right: 8),
+          child: SizedBox(
+            child: ProductItem(product: products[index],
+              onTap: (){
+                print(products[index].name);
+              },),
+            height: 350,
+          ),
+        );
+      },
+      itemCount: products.length,
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        crossAxisSpacing: 2,
+        mainAxisSpacing: 2,
+        childAspectRatio:
+        0.86, // set height ratio -  (itemWidth / itemHeight)
+      ),
     );
   }
 }

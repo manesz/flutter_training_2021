@@ -50,10 +50,10 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildListView(List<Product> products) {
     return ListView.builder(
-      padding: const EdgeInsets.all(2),
+      padding: const EdgeInsets.only(top:10),
       itemBuilder: (context, index) {
         return Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.only(left: 8, right: 8),
           child: SizedBox(
             child: ProductItem(product: products[index],
               onTap: (){

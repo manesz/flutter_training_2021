@@ -18,10 +18,24 @@ class App extends StatelessWidget {
   }
 }
 
-_initialPage() async {
+_initialPage() {
+
+  return FutureBuilder(
+      future: SharedPreferences.getInstance(),
+      builder: (context, snapshot){
+        // default view for transient duration
+        if (!snapshot.hasData) {
+          return Container(color: Colors.white);
+        }
+
+        return LoginPage();
+      });
 
 
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  final token = prefs.getString(AppSetting.token) ?? "";
-  return token.isEmpty ? LoginPage() : HomePage();
+
+
+  //
+  // SharedPreferences prefs = await SharedPreferences.getInstance();
+  // final token = prefs.getString(AppSetting.token) ?? "";
+  // return token.isEmpty ? LoginPage() : HomePage();
 }

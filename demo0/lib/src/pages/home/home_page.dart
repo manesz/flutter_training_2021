@@ -51,12 +51,15 @@ class _HomePageState extends State<HomePage> {
     return ListView.builder(
       padding: const EdgeInsets.all(2),
       itemBuilder: (context, index) {
-        return SizedBox(
-          child: ProductItem(product: products[index],
-            onTap: (){
-              print(products[index].name);
-            },),
-          height: 350,
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: SizedBox(
+            child: ProductItem(product: products[index],
+              onTap: (){
+                print(products[index].name);
+              },),
+            height: 350,
+          ),
         );
       },
       itemCount: products.length,

@@ -1,6 +1,7 @@
 import 'package:demo0/src/configs/app_routes.dart';
 import 'package:demo0/src/constants/app_setting.dart';
 import 'package:demo0/src/models/product.dart';
+import 'package:demo0/src/pages/home/widgets/product_item.dart';
 import 'package:demo0/src/services/network_service.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -44,10 +45,7 @@ class _HomePageState extends State<HomePage> {
           final products = snapshot.data ?? [];
           return ListView.builder(
             itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(products[index].name),
-              );
+              return ProductItem(product: products[index]);
             },
             itemCount: products.length,
           );

@@ -41,20 +41,25 @@ class _HomePageState extends State<HomePage> {
           }
 
           final products = snapshot.data ?? [];
-          return ListView.builder(
-            itemBuilder: (context, index) {
-              return SizedBox(
-                child: ProductItem(product: products[index],
-                onTap: (){
-                  print(products[index].name);
-                },),
-                height: 350,
-              );
-            },
-            itemCount: products.length,
-          );
+          return _buildListView(products);
         },
       ),
+    );
+  }
+
+  Widget _buildListView(List<Product> products) {
+    return ListView.builder(
+      padding: const EdgeInsets.all(2),
+      itemBuilder: (context, index) {
+        return SizedBox(
+          child: ProductItem(product: products[index],
+            onTap: (){
+              print(products[index].name);
+            },),
+          height: 350,
+        );
+      },
+      itemCount: products.length,
     );
   }
 }

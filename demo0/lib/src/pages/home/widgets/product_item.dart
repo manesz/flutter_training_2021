@@ -17,11 +17,14 @@ class ProductItem extends StatelessWidget {
       onPressed: onTap,
       child: LayoutBuilder(
         builder: (context, constraint)=> Container(
-          child: Column(
-            children: [
-              _buildImage(constraint.maxHeight),
-              _buildInfo(),
-            ],
+          child: Container(
+            color: Colors.white,
+            child: Column(
+              children: [
+                _buildImage(constraint.maxHeight),
+                _buildInfo(),
+              ],
+            ),
           ),
         ),
       ),

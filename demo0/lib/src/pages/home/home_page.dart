@@ -19,6 +19,7 @@ class _HomePageState extends State<HomePage> {
     List<String> dummy = ["Angular", "React", "Flutter"];
 
     return Scaffold(
+      backgroundColor: Colors.grey[400],
       appBar: AppBar(
         title: Text("Home"),
         actions: [

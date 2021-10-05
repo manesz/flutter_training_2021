@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
           }
 
           final products = snapshot.data ?? [];
-          return _buildListView(products);
+          return _buildGridView(products);
         },
       ),
     );
@@ -71,24 +71,17 @@ class _HomePageState extends State<HomePage> {
     return GridView.builder(
       padding: const EdgeInsets.only(top:10),
       itemBuilder: (context, index) {
-        return Padding(
-          padding: const EdgeInsets.only(left: 8, right: 8),
-          child: SizedBox(
-            child: ProductItem(product: products[index],
-              onTap: (){
-                print(products[index].name);
-              },),
-            height: 350,
-          ),
-        );
+        return ProductItem(product: products[index],
+          onTap: (){
+            print(products[index].name);
+          },);
       },
       itemCount: products.length,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        crossAxisSpacing: 2,
-        mainAxisSpacing: 2,
-        childAspectRatio:
-        0.86, // set height ratio -  (itemWidth / itemHeight)
+        crossAxisSpacing: 1,
+        mainAxisSpacing: 1,
+        childAspectRatio: 0.76, // set height ratio -  (itemWidth / itemHeight)
       ),
     );
   }

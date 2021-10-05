@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       body: StreamBuilder(
-        stream: ,
+        stream: _refreshController.stream,
           builder: (context, snapshot) {
             return FutureBuilder<List<Product>>(
               future: NetworkService().getProduct(),
@@ -67,27 +67,30 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildListView(List<Product> products) {
-    return ListView.builder(
-      padding: const EdgeInsets.only(top:10),
-      itemBuilder: (context, index) {
-        return Padding(
-          padding: const EdgeInsets.only(left: 8, right: 8),
-          child: SizedBox(
-            child: ProductItem(product: products[index],
-              onTap: (){
-                print(products[index].name);
-              },),
-            height: 350,
-          ),
-        );
-      },
-      itemCount: products.length,
+    return RefreshIndicator(
+      onRefresh:  ()async => _refreshController.sink.add(null),
+      child: ListView.builder(
+        padding: const EdgeInsets.only(top:10),
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: const EdgeInsets.only(left: 8, right: 8),
+            child: SizedBox(
+              child: ProductItem(product: products[index],
+                onTap: (){
+                  print(products[index].name);
+                },),
+              height: 350,
+            ),
+          );
+        },
+        itemCount: products.length,
+      ),
     );
   }
 
   Widget _buildGridView(List<Product> products) {
     return RefreshIndicator(
-      onRefresh: ()=>{},
+      onRefresh:  ()async => _refreshController.sink.add(null),
       child: GridView.builder(
         padding: const EdgeInsets.only(top:10),
         itemBuilder: (context, index) {

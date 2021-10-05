@@ -3,6 +3,7 @@ import 'dart:ffi';
 import 'package:demo0/src/configs/app_routes.dart';
 import 'package:demo0/src/constants/asset.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -125,8 +126,9 @@ class _LoginFormState extends State<LoginForm> {
       // method 1
       //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> HomePage(),),);
 
-
       // method 2
+      SharedPreferences pref = await SharedPreferences.getInstance();
+
       Navigator.pushReplacementNamed(context, AppRoute.home);
     }else{
       print("Login failed");

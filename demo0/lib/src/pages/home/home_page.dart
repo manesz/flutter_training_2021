@@ -27,7 +27,11 @@ class _HomePageState extends State<HomePage> {
         title: Text("Home"),
         actions: [
           IconButton(
-            onPressed: (){},
+            onPressed: (){
+              setState(() {
+                _isGrid = !_isGrid;
+              });
+            },
             icon: _isGrid ? const Icon(Icons.grid_3x3) : const Icon(Icons.list) ,
           ),
           IconButton(
@@ -49,7 +53,7 @@ class _HomePageState extends State<HomePage> {
           }
 
           final products = snapshot.data ?? [];
-          return _buildGridView(products);
+          return _isGrid ? _buildGridView(products) : _buildListView(products);
         },
       ),
     );

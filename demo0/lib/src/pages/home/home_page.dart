@@ -44,7 +44,10 @@ class _HomePageState extends State<HomePage> {
           final products = snapshot.data ?? [];
           return ListView.builder(
             itemBuilder: (context, index) {
-              return Text(products[index].name);
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(products[index].name),
+              );
             },
             itemCount: products.length,
           );

@@ -43,10 +43,10 @@ class App extends StatelessWidget {
 
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
+        BlocProvider<LoginBloc>(
           create: (context) => LoginBloc(),
         ),
-        BlocProvider(
+        BlocProvider<HomeBloc>(
           create: (context) => HomeBloc(),
         ),
       ],
@@ -69,6 +69,6 @@ _initialPage() {
         }
 
         final token = snapshot.data?.getString(AppSetting.token) ?? "";
-        return token.isEmpty ? LoginPage() : HomePage();
+        return token.isEmpty ? LoginPage() : HomePageV2();
       });
 }

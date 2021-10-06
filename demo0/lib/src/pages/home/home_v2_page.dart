@@ -18,21 +18,20 @@ class HomePageV2 extends StatefulWidget {
 }
 
 class _HomePageV2State extends State<HomePageV2> {
-  final _refreshController = StreamController<void>();
   var _isGrid = false;
-  
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     print("1234..");
     context.read<HomeBloc>().add(HomeEvent_Fetch());
-
   }
 
   @override
   Widget build(BuildContext context) {
-    final homeState = context.watch<HomeBloc>().state;
+    // final homeState = context.watch<HomeBloc>().state;
+    // final homeState = BlocProvider.of<HomeBloc>(context, listen: true).state;
 
     return Scaffold(
       backgroundColor: Colors.grey[200],
@@ -53,11 +52,21 @@ class _HomePageV2State extends State<HomePageV2> {
           )
         ],
       ),
-      body: _isGrid
-          ? _buildGridView(homeState.products)
-          : _buildListView(homeState.products),
+        body: BlocBuilder<HomeBloc, HomeState>(
+          builder: (context, state){
+            return _isGrid
+                ? _buildGridView(state.products)
+                : _buildListView(state.products);
+          },
+        )
     );
   }
+
+  /*
+  body: _isGrid
+  ? _buildGridView(homeState.products)
+      : _buildListView(homeState.products),
+  */
 
   /*
     body: BlocBuilder<HomeBloc, HomeState>(
@@ -71,7 +80,7 @@ class _HomePageV2State extends State<HomePageV2> {
 
   Widget _buildListView(List<Product> products) {
     return RefreshIndicator(
-      onRefresh: () async => _refreshController.sink.add(null),
+      onRefresh: () async => context.read<HomeBloc>().add(HomeEvent_Fetch()),
       child: ListView.builder(
         padding: const EdgeInsets.only(top: 10),
         itemBuilder: (context, index) {
@@ -95,7 +104,7 @@ class _HomePageV2State extends State<HomePageV2> {
 
   Widget _buildGridView(List<Product> products) {
     return RefreshIndicator(
-      onRefresh: () async => _refreshController.sink.add(null),
+      onRefresh: () async => context.read<HomeBloc>().add(HomeEvent_Fetch()),
       child: GridView.builder(
         padding: const EdgeInsets.only(top: 10),
         itemBuilder: (context, index) {

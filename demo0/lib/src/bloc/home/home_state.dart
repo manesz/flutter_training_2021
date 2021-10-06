@@ -12,20 +12,24 @@ class HomeState extends Equatable {
   final FetchStatus status;
 
   copyWith({
-    required List<Product> products,
+    List<Product>? products,
     FetchStatus? status,
   }) {
     return HomeState(
-      products: products,
+      products: products ?? this.products,
       status: status ?? this.status,
     );
   }
 
   @override
   String toString() {
-    return '''HomeState { products: $products }''';
+    return '''HomeState { productsLen: ${products.length}, status: $status }''';
   }
 
   @override
-  List<Object> get props => [products, status];
+  List<Object> get props {
+    return [products, status];
+  }
 }
+
+

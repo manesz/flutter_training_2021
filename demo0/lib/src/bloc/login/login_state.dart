@@ -1,10 +1,21 @@
 part of 'login_bloc.dart';
 
-abstract class LoginState extends Equatable {
-  const LoginState();
-}
+enum LoginStatus { fetching, success, faild, init }
 
-class LoginInitial extends LoginState {
+class LoginState extends Equatable {
+  final LoginStatus? status;
+
+  LoginState({this.status});
+
+  LoginState copyWith({LoginStatus? status}){
+    return LoginState(status: status ?? this.status);
+  }
+
+  @override
+  String toString() {
+    return '''LoginState { status: $status }''';
+  }
+
   @override
   List<Object> get props => [];
 }

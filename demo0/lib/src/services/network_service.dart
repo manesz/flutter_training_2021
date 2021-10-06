@@ -18,8 +18,6 @@ class NetworkService {
       InterceptorsWrapper(
         onRequest: (options, handler) {
           options.baseUrl = NetworkAPI.baseURL;
-          print(options.baseUrl + options.path);
-          print(options.data);
           return handler.next(options);
         },
         onResponse: (response, handler) async {

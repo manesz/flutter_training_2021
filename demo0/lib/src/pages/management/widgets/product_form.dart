@@ -72,7 +72,7 @@ class ProductForm extends StatelessWidget {
       );
 
   TextFormField _buildPriceInput() => TextFormField(
-        initialValue: product.price?.toString(),
+        initialValue: product.price.toString(),
         decoration: _inputStyle('price'),
         keyboardType: TextInputType.number,
         onSaved: (String? value) {
@@ -85,7 +85,7 @@ class ProductForm extends StatelessWidget {
       );
 
   TextFormField _buildStockInput() => TextFormField(
-        initialValue: product.stock?.toString(),
+        initialValue: product.stock.toString(),
         decoration: _inputStyle('stock'),
         keyboardType: TextInputType.number,
         onSaved: (String? value) {

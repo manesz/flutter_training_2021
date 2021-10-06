@@ -41,5 +41,17 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+
+	<key>NSCameraUsageDescription</key>
+    <string>Used to demonstrate image picker plugin</string>
+
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>Needed to access location</string>
+
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Needed to access location</string>
+
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Used to demonstrate image picker plugin</string>
 </dict>
 </plist>

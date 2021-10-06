@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:demo0/src/models/product.dart';
+import 'package:demo0/src/pages/management/widgets/product_form.dart';
 import 'package:demo0/src/services/network_service.dart';
 import 'package:demo0/src/widgets/custom_flushbar.dart';
 import 'package:flutter/material.dart';
@@ -42,7 +43,12 @@ class _ManagementPageState extends State<ManagementPage> {
             ),
           ]
       ),
-      body: Container(),
+      body: ProductForm(
+        _product,
+        callBackSetImage: _callBackSetImage,
+        formKey: _form,
+        deleteProduct: _editMode ? _deleteProduct : null,
+      ),
     );
   }
 
@@ -53,15 +59,13 @@ class _ManagementPageState extends State<ManagementPage> {
       CustomFlushbar.showLoading(context);
       String result;
       if (_editMode) {
-        result =
-        await NetworkService().editProduct(_product, imageFile: _imageFile);
+        // result = await NetworkService().editProduct(_product, imageFile: _imageFile);
       } else {
-        result =
-        await NetworkService().addProduct(_product, imageFile: _imageFile);
+        // result = await NetworkService().addProduct(_product, imageFile: _imageFile);
       }
       CustomFlushbar.close(context);
       Navigator.pop(context);
-      CustomFlushbar.showSuccess(context, message: result);
+      // CustomFlushbar.showSuccess(context, message: result);
     } catch (exception) {
       CustomFlushbar.showError(context, message: 'network fail');
     }

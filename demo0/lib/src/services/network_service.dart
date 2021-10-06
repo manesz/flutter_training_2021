@@ -57,6 +57,26 @@ class NetworkService {
     throw Exception();
   }
 
+  Future<String> editProduct(Product product, {File? imageFile}) async {
+    FormData data = FormData.fromMap({
+      'name': product.name,
+      'price': product.price,
+      'stock': product.stock,
+      if (imageFile != null)
+        'photo': await MultipartFile.fromFile(
+          imageFile.path,
+          contentType: MediaType('image', 'jpg'),
+        ),
+    });
+
+    final response =
+    await _dio.put('${NetworkAPI.product}/${product.id}', data: data);
+    if (response.statusCode == 200) {
+      return 'Edit Successfully';
+    }
+    throw Exception();
+  }
+
 
   Future<String> addProduct(Product product, {File? imageFile}) async {
     FormData data = FormData.fromMap({

@@ -55,12 +55,12 @@ class _ManagementPageState extends State<ManagementPage> {
   }
 
   void _deleteProduct() {
-    // NetworkService().deleteProduct(_product.id!).then((value) {
-    //   Navigator.pop(context);
-    //   CustomFlushbar.showSuccess(context, message: value);
-    // }).catchError((exception) {
-    //   CustomFlushbar.showError(context, message: 'Delete fail');
-    // });
+    NetworkService().deleteProduct(_product.id!).then((value) {
+      Navigator.pop(context);
+      CustomFlushbar.showSuccess(context, message: value);
+    }).catchError((exception) {
+      CustomFlushbar.showError(context, message: 'Delete fail');
+    });
   }
 
   void _callBackSetImage(File? imageFile) {
@@ -74,7 +74,7 @@ class _ManagementPageState extends State<ManagementPage> {
       CustomFlushbar.showLoading(context);
       String result;
       if (_editMode) {
-        // result = await NetworkService().editProduct(_product, imageFile: _imageFile);
+        result = await NetworkService().editProduct(_product, imageFile: _imageFile);
       } else {
         logger.i("Add Product : $_product");
         result = await NetworkService().addProduct(_product, imageFile: _imageFile);

@@ -25,26 +25,28 @@ class _HomePageState extends State<HomePage> {
     List<String> dummy = ["Angular", "React", "Flutter"];
 
     return Scaffold(
-      backgroundColor: Colors.grey[200],
-      appBar: AppBar(
-        title: Text("Home"),
-        actions: [
-          IconButton(
-            onPressed: (){
-              setState(() {
-                _isGrid = !_isGrid;
-              });
-            },
-            icon: _isGrid ? const Icon(Icons.grid_3x3) : const Icon(Icons.list) ,
-          ),
-          IconButton(
-            onPressed: () => context.read<LoginBloc>().add(LoginEvent_Logout()),
-            icon: const Icon(Icons.logout),
-          )
-        ],
-      ),
-      body: StreamBuilder(
-        stream: _refreshController.stream,
+        backgroundColor: Colors.grey[200],
+        appBar: AppBar(
+          title: Text("Home"),
+          actions: [
+            IconButton(
+              onPressed: () {
+                setState(() {
+                  _isGrid = !_isGrid;
+                });
+              },
+              icon:
+                  _isGrid ? const Icon(Icons.grid_3x3) : const Icon(Icons.list),
+            ),
+            IconButton(
+              onPressed: () =>
+                  context.read<LoginBloc>().add(LoginEvent_Logout()),
+              icon: const Icon(Icons.logout),
+            )
+          ],
+        ),
+        body: StreamBuilder(
+          stream: _refreshController.stream,
           builder: (context, snapshot) {
             return FutureBuilder<List<Product>>(
               future: NetworkService().getProduct(),
@@ -54,27 +56,34 @@ class _HomePageState extends State<HomePage> {
                 }
 
                 final products = snapshot.data ?? [];
-                return _isGrid ? _buildGridView(products) : _buildListView(products);
+                return _isGrid
+                    ? _buildGridView(products)
+                    : _buildListView(products);
               },
             );
           },
-      ),
-    );
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => {},
+          child: const Icon(Icons.add),
+        ));
   }
 
   Widget _buildListView(List<Product> products) {
     return RefreshIndicator(
-      onRefresh:  ()async => _refreshController.sink.add(null),
+      onRefresh: () async => _refreshController.sink.add(null),
       child: ListView.builder(
-        padding: const EdgeInsets.only(top:10),
+        padding: const EdgeInsets.only(top: 10),
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.only(left: 8, right: 8),
             child: SizedBox(
-              child: ProductItem(product: products[index],
-                onTap: (){
+              child: ProductItem(
+                product: products[index],
+                onTap: () {
                   print(products[index].name);
-                },),
+                },
+              ),
               height: 350,
             ),
           );
@@ -86,21 +95,24 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildGridView(List<Product> products) {
     return RefreshIndicator(
-      onRefresh:  ()async => _refreshController.sink.add(null),
+      onRefresh: () async => _refreshController.sink.add(null),
       child: GridView.builder(
-        padding: const EdgeInsets.only(top:10),
+        padding: const EdgeInsets.only(top: 10),
         itemBuilder: (context, index) {
-          return ProductItem(product: products[index],
-            onTap: (){
+          return ProductItem(
+            product: products[index],
+            onTap: () {
               print(products[index].name);
-            },);
+            },
+          );
         },
         itemCount: products.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           crossAxisSpacing: 1,
           mainAxisSpacing: 1,
-          childAspectRatio: 0.76, // set height ratio -  (itemWidth / itemHeight)
+          childAspectRatio:
+              0.76, // set height ratio -  (itemWidth / itemHeight)
         ),
       ),
     );

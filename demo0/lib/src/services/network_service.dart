@@ -21,7 +21,7 @@ class NetworkService {
           return handler.next(options);
         },
         onResponse: (response, handler) async {
-          // await Future.delayed(Duration(seconds: 2));
+          // await Future.delayed(Duration(seconds: 10));
           return handler.next(response);
         },
         onError: (DioError e, handler) {
@@ -36,7 +36,6 @@ class NetworkService {
         },
       ),
     );
-
 
 
   Future<List<Product>> getProduct() async {

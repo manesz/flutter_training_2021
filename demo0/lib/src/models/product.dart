@@ -4,11 +4,13 @@
 
 import 'dart:convert';
 
+import 'package:equatable/equatable.dart';
+
 List<Product> productFromJson(String str) => List<Product>.from(json.decode(str).map((x) => Product.fromJson(x)));
 
 String productToJson(List<Product> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class Product {
+class Product extends Equatable{
   Product({
     this.id,
     required this.name,
@@ -46,5 +48,9 @@ class Product {
     "created_at": createdAt?.toIso8601String(),
     "updated_at": updatedAt?.toIso8601String(),
   };
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [id, name, image, stock, price, createdAt, updatedAt];
 
 }

@@ -25,6 +25,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       } else if (event is LoginEvent_Forgot) {
         // Forgot
         print("Forgot Bloc");
+      }else if (event is LoginEvent_Logout) {
+        // Forgot
+        _doLogout();
       }
     });
   }
@@ -46,5 +49,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     } else {
       print("Login failed");
     }
+  }
+
+  Future<void> _doLogout() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.remove(AppSetting.token);
+    prefs.remove(AppSetting.username);
+    Navigator.pushReplacementNamed(navigatorState.currentContext!, AppRoute.login);
   }
 }

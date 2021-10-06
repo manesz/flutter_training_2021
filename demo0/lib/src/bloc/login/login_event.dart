@@ -18,9 +18,14 @@ class LoginEvent_Register extends LoginEvent{
   LoginEvent_Register(this.payload);
 }
 
-
 // Forgot Event
 class LoginEvent_Forgot extends LoginEvent{
   final String username;
   LoginEvent_Forgot(this.username);
+}
+
+
+// Logout Event
+class LoginEvent_Logout extends LoginEvent{
+  LoginEvent_Logout();
 }

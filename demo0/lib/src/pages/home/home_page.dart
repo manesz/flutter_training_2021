@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:demo0/src/bloc/login/login_bloc.dart';
 import 'package:demo0/src/configs/app_routes.dart';
 import 'package:demo0/src/constants/app_setting.dart';
 import 'package:demo0/src/models/product.dart';
@@ -37,7 +38,7 @@ class _HomePageState extends State<HomePage> {
             icon: _isGrid ? const Icon(Icons.grid_3x3) : const Icon(Icons.list) ,
           ),
           IconButton(
-            onPressed: () => context.read,
+            onPressed: () => context.read<LoginBloc>().add(LoginEvent_Logout()),
             icon: const Icon(Icons.logout),
           )
         ],

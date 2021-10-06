@@ -22,6 +22,7 @@ class _ManagementPageState extends State<ManagementPage> {
     if (arguments != null && arguments is Product) {
       _product = arguments;
       _editMode = true;
+      print(_product);
     }
 
     return Scaffold(

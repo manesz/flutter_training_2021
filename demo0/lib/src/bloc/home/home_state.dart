@@ -1,7 +1,7 @@
 part of 'home_bloc.dart';
 
 class HomeState extends Equatable {
-  const HomeState({required this.products});
+  const HomeState({this.products = const []});
   final List<Product> products;
 
   copyWith({required List<Product> products}) {

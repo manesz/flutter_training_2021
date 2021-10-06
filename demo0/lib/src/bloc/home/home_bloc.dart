@@ -8,9 +8,15 @@ part 'home_event.dart';
 part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  HomeBloc() : super(HomeInitial()) {
+  HomeBloc() : super(HomeState()) {
     on<HomeEvent>((event, emit) {
-      // TODO: implement event handler
+      if (event is HomeEvent_Fetch){
+        mapStateToHomeEvent(event, state);
+      }
     });
+  }
+
+  void mapStateToHomeEvent(HomeEvent event, HomeState state) {
+
   }
 }

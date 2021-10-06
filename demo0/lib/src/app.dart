@@ -5,6 +5,7 @@ import 'package:demo0/src/pages/pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'bloc/login/login_bloc.dart';
 import 'constants/app_setting.dart';
@@ -12,6 +13,19 @@ import 'constants/app_setting.dart';
 final formatCurrency = NumberFormat('#,###.00');
 final formatNumber = NumberFormat('#,###');
 final navigatorState = GlobalKey<NavigatorState>();
+
+final logger = Logger(
+  printer: PrettyPrinter(
+    colors: true,
+  ),
+);
+
+final loggerNoStack = Logger(
+  printer: PrettyPrinter(methodCount: 0,
+    colors: true,),
+);
+
+
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);

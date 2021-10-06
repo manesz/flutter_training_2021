@@ -64,9 +64,16 @@ class _HomePageState extends State<HomePage> {
           },
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () => {},
+          onPressed: () => _navigatorManagementPage(),
           child: const Icon(Icons.add),
         ));
+  }
+
+
+  void _navigatorManagementPage([Product? product]) {
+    Navigator.pushNamed(context, AppRoute.management, arguments: product).then(
+          (value) => setState(() {}),
+    );
   }
 
   Widget _buildListView(List<Product> products) {

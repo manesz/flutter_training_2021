@@ -88,7 +88,7 @@ class _HomePageState extends State<HomePage> {
               child: ProductItem(
                 product: products[index],
                 onTap: () {
-                  print(products[index].name);
+                  _navigatorManagementPage(products[index]);
                 },
               ),
               height: 350,
@@ -109,7 +109,7 @@ class _HomePageState extends State<HomePage> {
           return ProductItem(
             product: products[index],
             onTap: () {
-              print(products[index].name);
+              _navigatorManagementPage(products[index]);
             },
           );
         },

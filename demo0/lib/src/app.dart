@@ -2,6 +2,7 @@ import 'package:demo0/src/bloc/home/home_bloc.dart';
 import 'package:demo0/src/configs/app_routes.dart';
 import 'package:demo0/src/pages/home/home_v2_page.dart';
 import 'package:demo0/src/pages/pages.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -32,6 +33,14 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    if (kReleaseMode){
+      Logger.level = Level.nothing;
+    }else{
+      Logger.level = Level.info;
+    }
+
+
     return MultiBlocProvider(
       providers: [
         BlocProvider(

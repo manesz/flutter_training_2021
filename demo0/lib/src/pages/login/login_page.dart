@@ -1,10 +1,13 @@
 import 'dart:ffi';
 
+import 'package:demo0/src/bloc/login/login_bloc.dart';
 import 'package:demo0/src/configs/app_routes.dart';
 import 'package:demo0/src/constants/app_setting.dart';
 import 'package:demo0/src/constants/asset.dart';
+import 'package:demo0/src/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -123,18 +126,22 @@ class _LoginFormState extends State<LoginForm> {
   void _login() async {
     final username = _usernameController.text;
     final password = _passwordController.text;
-    if (username == 'admin' && password == 'password') {
-      // method 1
-      //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> HomePage(),),);
+    final User user = User(username, password);
 
-      // method 2
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      await prefs.setString(AppSetting.token, 'TExkgk0494oksrkf');
-      await prefs.setString(AppSetting.username, username);
-
-      Navigator.pushReplacementNamed(context, AppRoute.home);
-    }else{
-      print("Login failed");
-    }
+    context.read<LoginBloc>().add(LoginEvent_Login(user));
+    
+    // if (username == 'admin' && password == 'password') {
+    //   // method 1
+    //   //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> HomePage(),),);
+    //
+    //   // method 2
+    //   SharedPreferences prefs = await SharedPreferences.getInstance();
+    //   await prefs.setString(AppSetting.token, 'TExkgk0494oksrkf');
+    //   await prefs.setString(AppSetting.username, username);
+    //
+    //   Navigator.pushReplacementNamed(context, AppRoute.home);
+    // }else{
+    //   print("Login failed");
+    // }
   }
 }

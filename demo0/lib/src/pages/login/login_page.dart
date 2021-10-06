@@ -64,14 +64,15 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  _textButton({required String title, required VoidCallback onPressed}) => TextButton(
-      child: Text(
-        title,
-        style:
-            const TextStyle(color: Colors.white60, fontWeight: FontWeight.w500),
-      ),
-      onPressed: onPressed,
-    );
+  _textButton({required String title, required VoidCallback onPressed}) =>
+      TextButton(
+        child: Text(
+          title,
+          style: const TextStyle(
+              color: Colors.white60, fontWeight: FontWeight.w500),
+        ),
+        onPressed: onPressed,
+      );
 }
 
 // LoginForm
@@ -83,7 +84,6 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
-
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
 
@@ -115,33 +115,40 @@ class _LoginFormState extends State<LoginForm> {
                 icon: Icon(Icons.password_outlined),
               ),
             ),
-            ElevatedButton(onPressed: _login, child: Text("Login")),
+            ElevatedButton(
+                onPressed: () => context.read<LoginBloc>().add(
+                      LoginEvent_Login(
+                        User(
+                          _usernameController.text,
+                          _passwordController.text,
+                        ),
+                      ),
+                    ),
+                child: Text("Login")),
           ],
         ),
       ),
     );
   }
 
-
+  // Old style action call
   void _login() async {
     final username = _usernameController.text;
     final password = _passwordController.text;
     final User user = User(username, password);
 
-    context.read<LoginBloc>().add(LoginEvent_Login(user));
-    
-    // if (username == 'admin' && password == 'password') {
-    //   // method 1
-    //   //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> HomePage(),),);
-    //
-    //   // method 2
-    //   SharedPreferences prefs = await SharedPreferences.getInstance();
-    //   await prefs.setString(AppSetting.token, 'TExkgk0494oksrkf');
-    //   await prefs.setString(AppSetting.username, username);
-    //
-    //   Navigator.pushReplacementNamed(context, AppRoute.home);
-    // }else{
-    //   print("Login failed");
-    // }
+    if (username == 'admin' && password == 'password') {
+      // method 1
+      //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> HomePage(),),);
+
+      // method 2
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setString(AppSetting.token, 'TExkgk0494oksrkf');
+      await prefs.setString(AppSetting.username, username);
+
+      Navigator.pushReplacementNamed(context, AppRoute.home);
+    } else {
+      print("Login failed");
+    }
   }
 }

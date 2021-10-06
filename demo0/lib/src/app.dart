@@ -10,6 +10,8 @@ import 'constants/app_setting.dart';
 
 final formatCurrency = NumberFormat('#,###.00');
 final formatNumber = NumberFormat('#,###');
+final navigatorState = GlobalKey<NavigatorState>();
+
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);

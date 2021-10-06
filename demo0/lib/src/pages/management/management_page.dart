@@ -31,18 +31,15 @@ class _ManagementPageState extends State<ManagementPage> {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Management"),
-          actions: [
-            TextButton(
-              style: TextButton.styleFrom(
-                primary: Colors.white,
-              ),
-              onPressed: _submitForm,
-              child: const Text('Submit'),
-            ),
-          ]
-      ),
+      appBar: AppBar(title: Text("Management"), actions: [
+        TextButton(
+          style: TextButton.styleFrom(
+            primary: Colors.white,
+          ),
+          onPressed: _submitForm,
+          child: const Text('Submit'),
+        ),
+      ]),
       body: ProductForm(
         _product,
         callBackSetImage: _callBackSetImage,
@@ -50,6 +47,19 @@ class _ManagementPageState extends State<ManagementPage> {
         deleteProduct: _editMode ? _deleteProduct : null,
       ),
     );
+  }
+
+  void _deleteProduct() {
+    // NetworkService().deleteProduct(_product.id!).then((value) {
+    //   Navigator.pop(context);
+    //   CustomFlushbar.showSuccess(context, message: value);
+    // }).catchError((exception) {
+    //   CustomFlushbar.showError(context, message: 'Delete fail');
+    // });
+  }
+
+  void _callBackSetImage(File? imageFile) {
+    _imageFile = imageFile;
   }
 
   Future<void> _submitForm() async {
@@ -71,15 +81,3 @@ class _ManagementPageState extends State<ManagementPage> {
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-

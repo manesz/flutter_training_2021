@@ -59,6 +59,16 @@ class _HomePageV2State extends State<HomePageV2> {
     );
   }
 
+  /*
+    body: BlocBuilder<HomeBloc, HomeState>(
+        builder: (context, state){
+          return _isGrid
+              ? _buildGridView(state.products)
+              : _buildListView(state.products);
+        },
+      )
+   */
+
   Widget _buildListView(List<Product> products) {
     return RefreshIndicator(
       onRefresh: () async => _refreshController.sink.add(null),

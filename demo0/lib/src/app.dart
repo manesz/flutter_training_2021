@@ -46,6 +46,6 @@ _initialPage() {
         }
 
         final token = snapshot.data?.getString(AppSetting.token) ?? "";
-        return token.isEmpty ? LoginPage() : HomePageV2();
+        return token.isEmpty ? LoginPage() : HomePage();
       });
 }

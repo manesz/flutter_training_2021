@@ -1,6 +1,7 @@
 
 import 'dart:convert';
 
+import 'package:demo0/src/constants/network_api.dart';
 import 'package:demo0/src/models/product.dart';
 import 'package:dio/dio.dart';
 
@@ -10,9 +11,36 @@ class NetworkService {
   factory NetworkService() => _instance;
 
 
+  static final Dio _dio = Dio()
+    ..interceptors.add(
+      InterceptorsWrapper(
+        onRequest: (options, handler) {
+          options.baseUrl = NetworkAPI.baseURL;
+          print(options.baseUrl + options.path);
+          print(options.data);
+          return handler.next(options);
+        },
+        onResponse: (response, handler) async {
+          // await Future.delayed(Duration(seconds: 2));
+          return handler.next(response);
+        },
+        onError: (DioError e, handler) {
+          switch (e.response?.statusCode) {
+            case 301:
+              break;
+            case 401:
+              break;
+            default:
+          }
+          return handler.next(e);
+        },
+      ),
+    );
+
+
+
   Future<List<Product>> getProduct() async {
-    print("Loading..");
-    final response = await Dio().get("https://cmcrud.herokuapp.com/products");
+    final response = await _dio.get(NetworkAPI.product);
     if (response.statusCode == 200) {
       return productFromJson(jsonEncode(response.data));
     }

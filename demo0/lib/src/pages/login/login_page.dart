@@ -49,14 +49,16 @@ class _LoginPageState extends State<LoginPage> {
               LoginForm(),
               _textButton(
                   title: "register",
-                  onPressed: () {
-                    print("register");
-                  }),
+                  onPressed: () => context.read<LoginBloc>().add(
+                        LoginEvent_Register(
+                          User("dummy_username", "dummy_password"),
+                        ),
+                      )),
               _textButton(
                   title: "forgot password",
-                  onPressed: () {
-                    print("forgot password");
-                  }),
+                  onPressed: () => context.read<LoginBloc>().add(
+                        LoginEvent_Forgot("admin"),
+                      )),
             ],
           ),
         ),

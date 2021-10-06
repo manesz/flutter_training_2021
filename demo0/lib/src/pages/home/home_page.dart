@@ -87,9 +87,7 @@ class _HomePageState extends State<HomePage> {
             child: SizedBox(
               child: ProductItem(
                 product: products[index],
-                onTap: () {
-                  _navigatorManagementPage(products[index]);
-                },
+                onTap: () => _navigatorManagementPage(products[index]),
               ),
               height: 350,
             ),
@@ -108,9 +106,7 @@ class _HomePageState extends State<HomePage> {
         itemBuilder: (context, index) {
           return ProductItem(
             product: products[index],
-            onTap: () {
-              _navigatorManagementPage(products[index]);
-            },
+            onTap: () => _navigatorManagementPage(products[index]),
           );
         },
         itemCount: products.length,

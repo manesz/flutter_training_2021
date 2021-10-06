@@ -76,7 +76,8 @@ class _ManagementPageState extends State<ManagementPage> {
       if (_editMode) {
         // result = await NetworkService().editProduct(_product, imageFile: _imageFile);
       } else {
-        // result = await NetworkService().addProduct(_product, imageFile: _imageFile);
+        logger.i("Add Product : $_product");
+        result = await NetworkService().addProduct(_product, imageFile: _imageFile);
       }
       CustomFlushbar.close(context);
       Navigator.pop(context);

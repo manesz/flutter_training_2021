@@ -49,6 +49,15 @@ class NetworkService {
   }
 
 
+  Future<String> deleteProduct(int id) async {
+    final response = await _dio.delete('${NetworkAPI.product}/$id');
+    if (response.statusCode == 204) {
+      return 'Delete Successfully';
+    }
+    throw Exception();
+  }
+
+
   Future<String> addProduct(Product product, {File? imageFile}) async {
     FormData data = FormData.fromMap({
       'name': product.name,

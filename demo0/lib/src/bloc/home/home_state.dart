@@ -1,13 +1,31 @@
 part of 'home_bloc.dart';
 
-class HomeState extends Equatable {
-  const HomeState({this.products = const []});
-  final List<Product> products;
+enum FetchStatus { fetching, success, faild, init }
 
-  copyWith({required List<Product> products}) {
-    return HomeState(products: products);
+class HomeState extends Equatable {
+  const HomeState({
+    this.products = const [],
+    this.status = FetchStatus.init,
+  });
+
+  final List<Product> products;
+  final FetchStatus status;
+
+  copyWith({
+    required List<Product> products,
+    FetchStatus? status,
+  }) {
+    return HomeState(
+      products: products,
+      status: status ?? this.status,
+    );
   }
 
   @override
-  List<Object> get props => [products];
+  String toString() {
+    return '''HomeState { products: $products }''';
+  }
+
+  @override
+  List<Object> get props => [products, status];
 }

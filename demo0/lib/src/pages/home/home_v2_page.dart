@@ -27,6 +27,7 @@ class _HomePageV2State extends State<HomePageV2> {
     super.initState();
     print("1234..");
     context.read<HomeBloc>().add(HomeEvent_Fetch());
+
   }
 
   @override

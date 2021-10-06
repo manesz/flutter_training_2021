@@ -27,7 +27,7 @@ class _HomePageV2State extends State<HomePageV2> {
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        title: Text("Home"),
+        title: Text("Home BlocV2"),
         actions: [
           IconButton(
             onPressed: (){

@@ -45,7 +45,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       await prefs.setString(AppSetting.token, 'TExkgk0494oksrkf');
       await prefs.setString(AppSetting.username, username);
 
-      Navigator.pushReplacementNamed(navigatorState.currentContext!, AppRoute.home);
+      Navigator.pushReplacementNamed(navigatorState.currentContext!, AppRoute.home_v2);
     } else {
       print("Login failed");
     }

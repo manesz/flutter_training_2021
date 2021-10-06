@@ -1,7 +1,11 @@
 import 'dart:io';
 
 import 'package:demo0/src/models/product.dart';
+import 'package:demo0/src/services/network_service.dart';
+import 'package:demo0/src/widgets/custom_flushbar.dart';
 import 'package:flutter/material.dart';
+
+import '../../app.dart';
 
 class ManagementPage extends StatefulWidget {
   const ManagementPage({Key? key}) : super(key: key);
@@ -22,14 +26,56 @@ class _ManagementPageState extends State<ManagementPage> {
     if (arguments != null && arguments is Product) {
       _product = arguments;
       _editMode = true;
-      print(_product);
+      logger.d(_product);
     }
 
     return Scaffold(
       appBar: AppBar(
         title: Text("Management"),
+          actions: [
+            TextButton(
+              style: TextButton.styleFrom(
+                primary: Colors.white,
+              ),
+              onPressed: _submitForm,
+              child: const Text('Submit'),
+            ),
+          ]
       ),
       body: Container(),
     );
   }
+
+  Future<void> _submitForm() async {
+    FocusScope.of(context).requestFocus(FocusNode());
+    _form.currentState?.save();
+    try {
+      CustomFlushbar.showLoading(context);
+      String result;
+      if (_editMode) {
+        result =
+        await NetworkService().editProduct(_product, imageFile: _imageFile);
+      } else {
+        result =
+        await NetworkService().addProduct(_product, imageFile: _imageFile);
+      }
+      CustomFlushbar.close(context);
+      Navigator.pop(context);
+      CustomFlushbar.showSuccess(context, message: result);
+    } catch (exception) {
+      CustomFlushbar.showError(context, message: 'network fail');
+    }
+  }
 }
+
+
+
+
+
+
+
+
+
+
+
+

@@ -37,7 +37,7 @@ class App extends StatelessWidget {
     if (kReleaseMode){
       Logger.level = Level.nothing;
     }else{
-      Logger.level = Level.info;
+      Logger.level = Level.debug;
     }
 
 

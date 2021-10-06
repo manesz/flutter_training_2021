@@ -1,10 +1,13 @@
 part of 'home_bloc.dart';
 
-abstract class HomeState extends Equatable {
-  const HomeState();
-}
+class HomeState extends Equatable {
+  const HomeState({required this.products});
+  final List<Product> products;
 
-class HomeInitial extends HomeState {
+  copyWith({required List<Product> products}) {
+    return HomeState(products: products);
+  }
+
   @override
-  List<Object> get props => [];
+  List<Object> get props => [products];
 }

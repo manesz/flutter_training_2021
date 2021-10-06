@@ -6,7 +6,7 @@ import 'package:demo0/src/models/product.dart';
 import 'package:demo0/src/pages/home/widgets/product_item.dart';
 import 'package:demo0/src/services/network_service.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -37,12 +37,7 @@ class _HomePageState extends State<HomePage> {
             icon: _isGrid ? const Icon(Icons.grid_3x3) : const Icon(Icons.list) ,
           ),
           IconButton(
-            onPressed: () async {
-              SharedPreferences prefs = await SharedPreferences.getInstance();
-              prefs.remove(AppSetting.token);
-              prefs.remove(AppSetting.username);
-              Navigator.pushReplacementNamed(context, AppRoute.login);
-            },
+            onPressed: () => context.read,
             icon: const Icon(Icons.logout),
           )
         ],

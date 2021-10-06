@@ -12,7 +12,6 @@ final formatCurrency = NumberFormat('#,###.00');
 final formatNumber = NumberFormat('#,###');
 final navigatorState = GlobalKey<NavigatorState>();
 
-
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
 
@@ -28,10 +27,10 @@ class App extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
+          navigatorKey: navigatorState,
           title: "Demo0",
           routes: AppRoute().getAll,
-          home: _initialPage()
-      ),
+          home: _initialPage()),
     );
   }
 }

@@ -1,7 +1,7 @@
 import 'dart:async';
-import 'dart:js';
 
 import 'package:bloc/bloc.dart';
+import 'package:demo0/src/app.dart';
 import 'package:demo0/src/configs/app_routes.dart';
 import 'package:demo0/src/constants/app_setting.dart';
 import 'package:demo0/src/models/user.dart';
@@ -42,7 +42,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       await prefs.setString(AppSetting.token, 'TExkgk0494oksrkf');
       await prefs.setString(AppSetting.username, username);
 
-      Navigator.pushReplacementNamed(context, AppRoute.home);
+      Navigator.pushReplacementNamed(navigatorState.currentContext!, AppRoute.home);
     } else {
       print("Login failed");
     }

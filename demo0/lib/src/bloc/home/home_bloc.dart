@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:demo0/src/models/product.dart';
+import 'package:demo0/src/services/network_service.dart';
 import 'package:equatable/equatable.dart';
 
 part 'home_event.dart';
@@ -16,7 +17,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     });
   }
 
-  void mapStateToHomeEvent(HomeEvent event, HomeState state) {
-
+  Future<HomeState> mapStateToHomeEvent(HomeEvent event, HomeState state) async {
+    try {
+      final result = await NetworkService().getProduct();
+      return state.copyWith(products: result);
+    }catch (e){
+      return this.state;
+    }
   }
 }

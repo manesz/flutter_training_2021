@@ -40,11 +40,16 @@ class _ManagementPageState extends State<ManagementPage> {
           child: const Text('Submit'),
         ),
       ]),
-      body: ProductForm(
-        _product,
-        callBackSetImage: _callBackSetImage,
-        formKey: _form,
-        deleteProduct: _editMode ? _deleteProduct : null,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(30.0),
+          child: ProductForm(
+            _product,
+            callBackSetImage: _callBackSetImage,
+            formKey: _form,
+            deleteProduct: _editMode ? _deleteProduct : null,
+          ),
+        ),
       ),
     );
   }

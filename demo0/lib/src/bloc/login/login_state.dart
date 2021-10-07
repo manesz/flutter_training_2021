@@ -3,11 +3,11 @@ part of 'login_bloc.dart';
 enum LoginStatus { fetching, success, faild, init }
 
 class LoginState extends Equatable {
-  final LoginStatus? status;
+  final LoginStatus status;
 
-  LoginState({this.status});
+  LoginState({this.status = LoginStatus.init});
 
-  LoginState copyWith({LoginStatus? status}){
+  LoginState copyWith({LoginStatus? status}) {
     return LoginState(status: status ?? this.status);
   }
 
@@ -17,5 +17,5 @@ class LoginState extends Equatable {
   }
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [status];
 }

@@ -139,7 +139,7 @@ class _LoginFormState extends State<LoginForm> {
       await prefs.setString(AppSetting.token, 'TExkgk0494oksrkf');
       await prefs.setString(AppSetting.username, username);
 
-      Navigator.pushReplacementNamed(context, AppRoute.home);
+      Navigator.pushReplacementNamed(context, AppRoute.home_v2);
     } else {
       print("Login failed");
     }

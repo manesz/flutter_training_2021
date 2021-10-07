@@ -74,6 +74,7 @@ class _MapPageState extends State<MapPage> {
   }
 
   void _trackingLocation() async {
+    // Start / Stop tracking
     if (_locationSubscription != null) {
       _locationSubscription?.cancel();
       _locationSubscription = null;
@@ -83,6 +84,7 @@ class _MapPageState extends State<MapPage> {
     }
 
     try {
+      // Check avaliablity and permission service
       final serviceEnabled = await _checkServiceGPS();
       if (!serviceEnabled) {
         throw PlatformException(code: 'SERVICE_STATUS_DENIED');
@@ -93,6 +95,7 @@ class _MapPageState extends State<MapPage> {
         throw PlatformException(code: 'PERMISSION_DENIED');
       }
 
+      // condition to tracking
       await _locationService.changeSettings(
         accuracy: LocationAccuracy.high,
         interval: 10000,

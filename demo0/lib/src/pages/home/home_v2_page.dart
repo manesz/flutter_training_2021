@@ -53,6 +53,18 @@ class _HomePageV2State extends State<HomePageV2> {
               icon:
                   _isGrid ? const Icon(Icons.grid_3x3) : const Icon(Icons.list),
             ),
+            IconButton(
+              onPressed: () => _showDialogBarcode(context),
+              icon: const FaIcon(FontAwesomeIcons.barcode),
+            ),
+            IconButton(
+              onPressed: () => _showDialogQRImage(context),
+              icon: const Icon(Icons.qr_code_2),
+            ),
+            IconButton(
+              onPressed: () => _showScanQRCode(context),
+              icon: const Icon(Icons.qr_code_scanner),
+            ),
           ],
         ),
         floatingActionButton: FloatingActionButton(

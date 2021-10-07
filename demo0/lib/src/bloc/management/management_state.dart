@@ -1,25 +1,23 @@
 part of 'management_bloc.dart';
 
-enum SubmittingStatus { submitting, success, faild, init }
+enum SubmitStatus { submitting, success, faild, init }
 
 class ManagementState extends Equatable {
-  const ManagementState(this.status);
+  const ManagementState({this.status = SubmitStatus.init});
 
-  final SubmittingStatus status;
+  final SubmitStatus status;
 
   copyWith({
-    List<Product>? products,
-    FetchStatus? status,
+    SubmitStatus? status,
   }) {
-    return HomeState(
-      products: products ?? this.products,
+    return ManagementState(
       status: status ?? this.status,
     );
   }
 
   @override
   String toString() {
-    return '''HomeState { productsLen: ${products.length}, status: $status }''';
+    return '''ManagementState { status: $status }''';
   }
 
   @override

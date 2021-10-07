@@ -1,17 +1,18 @@
-
 import 'dart:convert';
 import 'dart:io';
 
 import 'package:demo0/src/constants/network_api.dart';
 import 'package:demo0/src/models/product.dart';
 import 'package:dio/dio.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http_parser/http_parser.dart';
 
 class NetworkService {
   NetworkService._internal();
-  static final NetworkService _instance = NetworkService._internal();
-  factory NetworkService() => _instance;
 
+  static final NetworkService _instance = NetworkService._internal();
+
+  factory NetworkService() => _instance;
 
   static final Dio _dio = Dio()
     ..interceptors.add(
@@ -37,7 +38,6 @@ class NetworkService {
       ),
     );
 
-
   Future<List<Product>> getProduct() async {
     final response = await _dio.get(NetworkAPI.product);
     if (response.statusCode == 200) {
@@ -45,7 +45,6 @@ class NetworkService {
     }
     throw Exception();
   }
-
 
   Future<String> deleteProduct(int id) async {
     final response = await _dio.delete('${NetworkAPI.product}/$id');
@@ -68,13 +67,12 @@ class NetworkService {
     });
 
     final response =
-    await _dio.put('${NetworkAPI.product}/${product.id}', data: data);
+        await _dio.put('${NetworkAPI.product}/${product.id}', data: data);
     if (response.statusCode == 200) {
       return 'Edit Successfully';
     }
     throw Exception();
   }
-
 
   Future<String> addProduct(Product product, {File? imageFile}) async {
     FormData data = FormData.fromMap({
@@ -91,6 +89,25 @@ class NetworkService {
     final response = await _dio.post(NetworkAPI.product, data: data);
     if (response.statusCode == 201) {
       return 'Add Successfully';
+    }
+    throw Exception();
+  }
+
+  Future<String> submitLocation(LatLng position) async {
+    var params = {
+      "lat": position.latitude,
+      "lng": position.longitude,
+    };
+
+    Response response = await Dio().post(
+      "http://...",
+      options:
+          Options(headers: {HttpHeaders.contentTypeHeader: "application/json"}),
+      data: jsonEncode(params),
+    );
+
+    if (response.statusCode == 201) {
+      return 'Submit Successfully';
     }
     throw Exception();
   }

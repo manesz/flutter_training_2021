@@ -68,6 +68,6 @@ class MenuViewModel {
       },
       notification: count,
     );
-    _menus.insert(2, inBox);
+    _menus.insert(1, inBox);
   }
 }

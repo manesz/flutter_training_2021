@@ -19,17 +19,17 @@ class ManagementBloc extends Bloc<ManagementEvent, ManagementState> {
     on<ManagementEvent_Submit>(mapStateToManagementEvent_Submit);
   }
 
-  mapStateToManagementEvent_Submit(event, emit) async {
+  mapStateToManagementEvent_Submit(ManagementEvent_Submit event, emit) async {
 
     // Debug
     // emit(state.copyWith(status: SubmitStatus.submitting));
     // await Future.delayed(Duration(seconds: 2));
     // emit(state.copyWith(status: SubmitStatus.success));
 
-    final _product = event.product;
-    final _imageFile = event.image;
-    final _editMode = event.editMode;
-    final _form = event.form;
+    final _product = event.product!;
+    final _imageFile = event.image!;
+    final _editMode = event.isEditMode!;
+    final _form = event.form!;
 
     emit(state.copyWith(status: SubmitStatus.submitting));
     FocusScope.of(navigatorState.currentContext!).requestFocus(FocusNode());

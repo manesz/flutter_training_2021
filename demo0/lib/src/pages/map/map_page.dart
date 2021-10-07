@@ -115,6 +115,8 @@ class _MapPageState extends State<MapPage> {
           );
           _animateCamera(latLng);
           setState(() {});
+
+          // Send new location to server
         },
       );
     } on PlatformException catch (e) {

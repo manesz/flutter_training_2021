@@ -1,5 +1,6 @@
 import 'package:demo0/src/bloc/home/home_bloc.dart';
 import 'package:demo0/src/bloc/management/management_bloc.dart';
+import 'package:demo0/src/bloc/map/map_bloc.dart';
 import 'package:demo0/src/configs/app_routes.dart';
 import 'package:demo0/src/pages/home/home_v2_page.dart';
 import 'package:demo0/src/pages/pages.dart';
@@ -53,6 +54,9 @@ class App extends StatelessWidget {
         ),
         BlocProvider<ManagementBloc>(
           create: (context) => ManagementBloc(),
+        ),
+        BlocProvider<MapBloc>(
+          create: (context) => MapBloc(),
         ),
       ],
       child: MaterialApp(

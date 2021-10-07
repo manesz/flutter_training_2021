@@ -3,6 +3,7 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui';
 
+import 'package:demo0/src/bloc/map/map_bloc.dart';
 import 'package:demo0/src/constants/asset.dart';
 import 'package:demo0/src/utils/common.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({Key? key}) : super(key: key);
@@ -117,6 +119,7 @@ class _MapPageState extends State<MapPage> {
           setState(() {});
 
           // Send new location to server
+          context.read<MapBloc>().add(MapEvent_SubmitLocation(position: latLng));
         },
       );
     } on PlatformException catch (e) {

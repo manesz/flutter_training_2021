@@ -7,6 +7,7 @@ import 'package:demo0/src/constants/asset.dart';
 import 'package:demo0/src/utils/common.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -37,6 +38,13 @@ class _MapPageState extends State<MapPage> {
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _locationSubscription!.cancel();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -55,7 +63,102 @@ class _MapPageState extends State<MapPage> {
     );
   }
 
-  Future<void> _dummyLocation() async {
+  FloatingActionButton _buildTrackingButton() {
+    final isTracking = _locationSubscription != null;
+    return FloatingActionButton.extended(
+      onPressed: _trackingLocation,
+      label: Text(isTracking ? 'Stop Tracking' : 'Start Tracking'),
+      backgroundColor: isTracking ? Colors.red : Colors.blue,
+      icon: FaIcon(isTracking ? FontAwesomeIcons.stop : FontAwesomeIcons.play),
+    );
+  }
+
+  void _trackingLocation() async {
+    if (_locationSubscription != null) {
+      _locationSubscription?.cancel();
+      _locationSubscription = null;
+      _markers.clear();
+      setState(() {});
+      return;
+    }
+
+    try {
+      final serviceEnabled = await _checkServiceGPS();
+      if (!serviceEnabled) {
+        throw PlatformException(code: 'SERVICE_STATUS_DENIED');
+      }
+
+      final permissionGranted = await _checkPermission();
+      if (!permissionGranted) {
+        throw PlatformException(code: 'PERMISSION_DENIED');
+      }
+
+      await _locationService.changeSettings(
+        accuracy: LocationAccuracy.high,
+        interval: 10000,
+        distanceFilter: 100,
+      ); // meters.
+
+      _locationSubscription = _locationService.onLocationChanged.listen(
+            (locationData) async {
+          _markers.clear();
+          final latLng = LatLng(
+            locationData.latitude!,
+            locationData.longitude!,
+          );
+          await _addMarker(
+            latLng,
+            pinAsset: Asset.pinCurrentImage,
+          );
+          _animateCamera(latLng);
+          setState(() {});
+        },
+      );
+    } on PlatformException catch (e) {
+      switch (e.code) {
+        case 'PERMISSION_DENIED':
+        //todo
+          break;
+        case 'SERVICE_STATUS_ERROR':
+        //todo
+          break;
+        case 'SERVICE_STATUS_DENIED':
+        //todo
+          break;
+        default:
+        //todo
+      }
+    }
+  }
+
+  Future<bool> _checkPermission() async {
+    var permissionGranted = await _locationService.hasPermission();
+    if (permissionGranted == PermissionStatus.granted) {
+      return true;
+    }
+    permissionGranted = await _locationService.requestPermission();
+    return permissionGranted == PermissionStatus.granted;
+  }
+
+  Future<bool> _checkServiceGPS() async {
+    var serviceEnabled = await _locationService.serviceEnabled();
+    if (serviceEnabled) {
+      return true;
+    }
+    serviceEnabled = await _locationService.requestService();
+    return serviceEnabled;
+  }
+
+  Future<void> _animateCamera(LatLng latLng) async {
+    _controller.future.then((controller) {
+      controller.animateCamera(CameraUpdate.newLatLngZoom(latLng, 16));
+    });
+  }
+}
+
+
+
+Future<void> _dummyLocation() async {
     await Future.delayed(Duration(seconds: 2));
 
     List<LatLng> data = [

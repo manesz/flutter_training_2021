@@ -4,7 +4,11 @@ import 'package:badges/badges.dart';
 import 'package:demo0/src/bloc/home/home_bloc.dart';
 import 'package:demo0/src/bloc/login/login_bloc.dart';
 import 'package:demo0/src/configs/app_routes.dart';
+import 'package:demo0/src/constants/asset.dart';
 import 'package:demo0/src/models/product.dart';
+import 'package:demo0/src/pages/home/widgets/dialog_barcode_image.dart';
+import 'package:demo0/src/pages/home/widgets/dialog_qr_image.dart';
+import 'package:demo0/src/pages/home/widgets/dialog_scan_qrcode.dart';
 import 'package:demo0/src/pages/home/widgets/product_item.dart';
 import 'package:demo0/src/viewmodels/menu_viewmodel.dart';
 import 'package:flutter/material.dart';
@@ -127,6 +131,38 @@ class _HomePageV2State extends State<HomePageV2> {
           childAspectRatio:
               0.76, // set height ratio -  (itemWidth / itemHeight)
         ),
+      ),
+    );
+  }
+
+
+
+
+  void _showDialogQRImage(context) {
+    showDialog<void>(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext dialogContext) => const DialogQRImage(
+        'www.codemobiles.com',
+        image: Asset.pinBikerImage,
+      ),
+    );
+  }
+
+  void _showScanQRCode(context) {
+    showDialog<void>(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext dialogContext) => DialogScanQRCode(),
+    );
+  }
+
+  void _showDialogBarcode(context) {
+    showDialog<void>(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext dialogContext) => const DialogBarcodeImage(
+        'www.codemobiles.com',
       ),
     );
   }

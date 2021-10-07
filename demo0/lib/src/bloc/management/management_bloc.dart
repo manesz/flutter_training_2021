@@ -2,12 +2,13 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
+import 'package:demo0/src/bloc/home/home_bloc.dart';
 import 'package:demo0/src/models/product.dart';
 import 'package:demo0/src/services/network_service.dart';
 import 'package:demo0/src/widgets/custom_flushbar.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../app.dart';
 
 part 'management_event.dart';
@@ -45,8 +46,10 @@ class ManagementBloc extends Bloc<ManagementEvent, ManagementState> {
       }
       CustomFlushbar.close(navigatorState.currentContext!);
       Navigator.pop(navigatorState.currentContext!);
-
       emit(state.copyWith(status: SubmitStatus.success));
+
+      // Re-fetch product.
+      navigatorState.currentContext!.read<HomeBloc>().add(HomeEvent_Fetch());
       // CustomFlushbar.showSuccess(context, message: result);
     } catch (exception) {
       CustomFlushbar.showError(navigatorState.currentContext!, message: 'network fail');

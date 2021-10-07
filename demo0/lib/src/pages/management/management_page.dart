@@ -72,22 +72,6 @@ class _ManagementPageState extends State<ManagementPage> {
   }
 
   Future<void> _submitForm() async {
-    FocusScope.of(context).requestFocus(FocusNode());
-    _form.currentState?.save();
-    try {
-      CustomFlushbar.showLoading(context);
-      String result;
-      if (_editMode) {
-        result = await NetworkService().editProduct(_product, imageFile: _imageFile);
-      } else {
-        logger.i("Add Product : $_product");
-        result = await NetworkService().addProduct(_product, imageFile: _imageFile);
-      }
-      CustomFlushbar.close(context);
-      Navigator.pop(context);
-      // CustomFlushbar.showSuccess(context, message: result);
-    } catch (exception) {
-      CustomFlushbar.showError(context, message: 'network fail');
-    }
+
   }
 }

@@ -9,8 +9,8 @@ abstract class ManagementEvent extends Equatable {
 }
 
 class ManagementEvent_Submit extends ManagementEvent{
-  final Product _product;
-  final File? _image;
+  final Product product;
+  final File? image;
 
-  ManagementEvent_Submit(this._product, this._image);
+  ManagementEvent_Submit(this.product, this.image);
 }

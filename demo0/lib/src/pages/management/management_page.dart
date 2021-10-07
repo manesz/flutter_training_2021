@@ -39,8 +39,13 @@ class _ManagementPageState extends State<ManagementPage> {
           style: TextButton.styleFrom(
             primary: Colors.white,
           ),
-          // onPressed: _submitForm,
-          onPressed: ()=> BlocProvider.of<ManagementBloc>(context, listen: false).add(ManagementEvent_Submit(_product, _imageFile)),
+          onPressed: () =>
+              BlocProvider.of<ManagementBloc>(context, listen: false).add(
+                  ManagementEvent_Submit(
+                      product: _product,
+                      image: _imageFile,
+                      isEditMode: _editMode,
+                      form: _form)),
           child: const Text('Submit'),
         ),
       ]),
@@ -71,7 +76,4 @@ class _ManagementPageState extends State<ManagementPage> {
     _imageFile = imageFile;
   }
 
-  Future<void> _submitForm() async {
-
-  }
 }

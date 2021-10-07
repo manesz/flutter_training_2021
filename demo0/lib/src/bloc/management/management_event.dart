@@ -5,7 +5,7 @@ abstract class ManagementEvent extends Equatable {
 
   @override
   // TODO: implement props
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [];
 }
 
 class ManagementEvent_Submit extends ManagementEvent{

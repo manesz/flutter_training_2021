@@ -50,6 +50,7 @@ class _MapPageState extends State<MapPage> {
       appBar: AppBar(
         title: Text("Map"),
       ),
+      floatingActionButton: _buildTrackingButton(),
       body: GoogleMap(
         markers: _markers,
         mapType: MapType.hybrid,
@@ -58,7 +59,6 @@ class _MapPageState extends State<MapPage> {
           _controller.complete(controller);
           _dummyLocation();
         },
-
       ),
     );
   }
@@ -100,7 +100,7 @@ class _MapPageState extends State<MapPage> {
       ); // meters.
 
       _locationSubscription = _locationService.onLocationChanged.listen(
-            (locationData) async {
+        (locationData) async {
           _markers.clear();
           final latLng = LatLng(
             locationData.latitude!,
@@ -117,13 +117,13 @@ class _MapPageState extends State<MapPage> {
     } on PlatformException catch (e) {
       switch (e.code) {
         case 'PERMISSION_DENIED':
-        //todo
+          //todo
           break;
         case 'SERVICE_STATUS_ERROR':
-        //todo
+          //todo
           break;
         case 'SERVICE_STATUS_DENIED':
-        //todo
+          //todo
           break;
         default:
         //todo
@@ -154,11 +154,8 @@ class _MapPageState extends State<MapPage> {
       controller.animateCamera(CameraUpdate.newLatLngZoom(latLng, 16));
     });
   }
-}
 
-
-
-Future<void> _dummyLocation() async {
+  Future<void> _dummyLocation() async {
     await Future.delayed(Duration(seconds: 2));
 
     List<LatLng> data = [
@@ -185,7 +182,6 @@ Future<void> _dummyLocation() async {
     setState(() {});
   }
 
-
   LatLngBounds _boundsFromLatLngList(List<LatLng> list) {
     double? x0, x1, y0, y1 = 0;
     for (LatLng latLng in list) {
@@ -206,13 +202,12 @@ Future<void> _dummyLocation() async {
   }
 
   Future<void> _addMarker(
-      LatLng position, {
-        String title = 'none',
-        String snippet = 'none',
-        String pinAsset = Asset.pinBikerImage,
-        bool isShowInfo = false,
-      }) async {
-
+    LatLng position, {
+    String title = 'none',
+    String snippet = 'none',
+    String pinAsset = Asset.pinBikerImage,
+    bool isShowInfo = false,
+  }) async {
     final Uint8List markerIcon = await getBytesFromAsset(
       pinAsset,
       width: 150,
@@ -227,13 +222,13 @@ Future<void> _dummyLocation() async {
         position: position,
         infoWindow: isShowInfo
             ? InfoWindow(
-          title: title,
-          snippet: snippet,
-          onTap: () => _launchMaps(
-            lat: position.latitude,
-            lng: position.longitude,
-          ),
-        )
+                title: title,
+                snippet: snippet,
+                onTap: () => _launchMaps(
+                  lat: position.latitude,
+                  lng: position.longitude,
+                ),
+              )
             : InfoWindow(),
         icon: bitmap,
         onTap: () async {
@@ -266,6 +261,4 @@ Future<void> _dummyLocation() async {
     }
     throw 'Could not launch url';
   }
-
-
 }

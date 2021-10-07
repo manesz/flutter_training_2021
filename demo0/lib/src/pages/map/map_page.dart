@@ -24,6 +24,7 @@ class _MapPageState extends State<MapPage> {
     zoom: 20,
   );
 
+  final Completer<GoogleMapController> _controller = Completer();
   StreamSubscription<LocationData>? _locationSubscription;
   final _locationService = Location();
   final Set<Marker> _markers = {};
@@ -45,7 +46,7 @@ class _MapPageState extends State<MapPage> {
         mapType: MapType.hybrid,
         initialCameraPosition: _initMap,
         onMapCreated: (GoogleMapController controller) {
-          // _controller.complete(controller);
+          _controller.complete(controller);
           _dummyLocation();
         },
 

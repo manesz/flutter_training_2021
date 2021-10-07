@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'dart:ui';
 
 import 'package:demo0/src/constants/asset.dart';
+import 'package:demo0/src/utils/common.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -79,21 +80,6 @@ class _MapPageState extends State<MapPage> {
     setState(() {});
   }
 
-  Future<Uint8List> _getBytesFromAsset(
-      String path, {
-        required int width,
-      }) async {
-    ByteData data = await rootBundle.load(path);
-    Codec codec = await instantiateImageCodec(
-      data.buffer.asUint8List(),
-      targetWidth: width,
-    );
-    FrameInfo fi = await codec.getNextFrame();
-    return (await fi.image.toByteData(format: ImageByteFormat.png))!
-        .buffer
-        .asUint8List();
-  }
-
 
   Future<void> _addMarker(
       LatLng position, {
@@ -102,10 +88,12 @@ class _MapPageState extends State<MapPage> {
         String pinAsset = Asset.pinBikerImage,
         bool isShowInfo = false,
       }) async {
-    final Uint8List markerIcon = await _getBytesFromAsset(
+
+    final Uint8List markerIcon = await getBytesFromAsset(
       pinAsset,
       width: 150,
     );
+
     final BitmapDescriptor bitmap = BitmapDescriptor.fromBytes(markerIcon);
 
     _markers.add(

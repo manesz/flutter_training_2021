@@ -13,7 +13,9 @@ part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc() : super(HomeState()) {
+
     on<HomeEvent_Fetch>(mapStateToHomeEvent);
+
   }
 
   mapStateToHomeEvent(HomeEvent_Fetch event, Emitter emit) async {

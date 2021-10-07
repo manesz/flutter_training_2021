@@ -17,6 +17,7 @@ final navigatorState = GlobalKey<NavigatorState>();
 
 final logger = Logger(
   printer: PrettyPrinter(
+    methodCount: 0,
     colors: true,
   ),
 );

@@ -22,15 +22,6 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Login"),
-        actions: [
-          IconButton(
-            onPressed: () {
-              print(DateTime.now());
-              Navigator.pushNamed(context, AppRoute.home);
-            },
-            icon: Icon(Icons.navigate_next),
-          ),
-        ],
       ),
       body: Container(
         height: double.infinity,

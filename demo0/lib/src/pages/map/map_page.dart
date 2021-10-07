@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({Key? key}) : super(key: key);
@@ -125,13 +126,10 @@ class _MapPageState extends State<MapPage> {
             ? InfoWindow(
           title: title,
           snippet: snippet,
-          // onTap: () => _launchMaps(
-          //   lat: position.latitude,
-          //   lng: position.longitude,onTap: () => _launchMaps(
-          //           //   lat: position.latitude,
-          //           //   lng: position.longitude,
-          //           // ),
-          // ),
+          onTap: () => _launchMaps(
+            lat: position.latitude,
+            lng: position.longitude,
+          ),
         )
             : InfoWindow(),
         icon: bitmap,
@@ -141,5 +139,30 @@ class _MapPageState extends State<MapPage> {
       ),
     );
   }
+
+  void _launchMaps({required double lat, required double lng}) async {
+    final parameter = '?z=16&q=$lat,$lng';
+
+    if (Platform.isIOS) {
+      const googleMap = 'comgooglemaps://';
+      const appleMap = "https://maps.apple.com/";
+      if (await canLaunch(googleMap)) {
+        await launch(googleMap + parameter);
+        return;
+      }
+      if (await canLaunch(appleMap)) {
+        await launch(appleMap + parameter);
+        return;
+      }
+    } else {
+      final googleMapURL = 'https://maps.google.com/';
+      if (await canLaunch(googleMapURL)) {
+        await launch(googleMapURL + parameter);
+        return;
+      }
+    }
+    throw 'Could not launch url';
+  }
+
 
 }

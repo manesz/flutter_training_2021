@@ -12,6 +12,7 @@ router.get('/products', async (req, res) => {
                 ['id', 'DESC']
             ]
         })
+        console.log("router.get('/products') called")
         res.status(200).json(result)
     } catch (error) {
         res.status(500).json({ message: error.message })

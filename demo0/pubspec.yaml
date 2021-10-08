@@ -61,10 +61,10 @@ dev_dependencies:
 
 
 flutter_icons:
-  android: "ic_launcher"
-  ios: false
+  android: false
+  ios: true
   remove_alpha_ios: true
-  image_path: "assets/icon/logo_cm_app_circle.png"
+  image_path: "assets/icon/logo_cm_app_square.png"
 
 
   # The "flutter_lints" package below contains a set of recommended lints to

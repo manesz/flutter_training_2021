@@ -25,24 +25,22 @@ final logger = Logger(
 );
 
 final loggerNoStack = Logger(
-  printer: PrettyPrinter(methodCount: 0,
-    colors: true,),
+  printer: PrettyPrinter(
+    methodCount: 0,
+    colors: true,
+  ),
 );
-
-
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
-    if (kReleaseMode){
+    if (kReleaseMode) {
       Logger.level = Level.nothing;
-    }else{
+    } else {
       Logger.level = Level.debug;
     }
-
 
     return MultiBlocProvider(
       providers: [
@@ -60,6 +58,7 @@ class App extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
+          debugShowCheckedModeBanner: false,
           navigatorKey: navigatorState,
           title: "Demo0",
           routes: AppRoute().getAll,

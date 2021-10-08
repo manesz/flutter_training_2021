@@ -13,6 +13,8 @@ part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc() : super(LoginState(status: LoginStatus.init)) {
+
+    // Listen Events
     on<LoginEvent_Login>(mapEventLoginToState);
     on<LoginEvent_Logout>(mapEventLogoutToState);
     on<LoginEvent_Register>((event, emit) => {logger.i("Register Bloc")});

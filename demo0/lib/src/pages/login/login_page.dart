@@ -30,14 +30,14 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 50,
               ),
               Image.asset(Asset.logoImage),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
-              LoginForm(),
+              const LoginForm(),
               _textButton(
                   title: "register",
                   onPressed: () => context.read<LoginBloc>().add(
@@ -91,7 +91,7 @@ class _LoginFormState extends State<LoginForm> {
           children: [
             TextField(
               controller: _usernameController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: InputBorder.none,
                 hintText: 'codemobiles@gmail.com',
                 labelText: 'Username',
@@ -101,7 +101,7 @@ class _LoginFormState extends State<LoginForm> {
             TextField(
               controller: _passwordController,
               obscureText: true,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: InputBorder.none,
                 hintText: 'Enter password',
                 labelText: 'Password',

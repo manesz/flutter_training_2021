@@ -10,12 +10,13 @@ part 'map_event.dart';
 part 'map_state.dart';
 
 class MapBloc extends Bloc<MapEvent, MapState> {
-  MapBloc() : super(MapState()) {
+  MapBloc() : super(MapState(currentPosition: LatLng(13.7462463, 100.5325515))) {
     on<MapEvent_SubmitLocation>(_mapStateToSubmitLocation);
   }
 
   FutureOr<void> _mapStateToSubmitLocation(MapEvent_SubmitLocation event, Emitter<MapState> emit) {
-    logger.i("Location : ${event.position}");
+
+    emit(state.copyWith(position: event.position!));
     NetworkService().submitLocation(event.position!);
   }
 }

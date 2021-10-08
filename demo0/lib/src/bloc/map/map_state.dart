@@ -1,9 +1,9 @@
 part of 'map_bloc.dart';
 
 class MapState extends Equatable {
-  final LatLng? currentPosition;
+  final LatLng currentPosition;
 
-  MapState({this.currentPosition = null});
+  MapState({required this.currentPosition});
 
   copyWith({
     LatLng? position,
@@ -19,5 +19,5 @@ class MapState extends Equatable {
   }
 
   @override
-  List<Object> get props => [currentPosition!];
+  List<Object> get props => [currentPosition];
 }

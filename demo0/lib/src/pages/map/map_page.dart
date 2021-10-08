@@ -69,7 +69,11 @@ class _MapPageState extends State<MapPage> {
     final isTracking = _locationSubscription != null;
     return FloatingActionButton.extended(
       onPressed: _trackingLocation,
-      label: Text(isTracking ? 'Stop Tracking' : 'Start Tracking'),
+      label: BlocBuilder<MapBloc, MapState>(
+        builder: (context, state) {
+          return Text(isTracking ? 'Stop Tracking ${state.currentPosition}' : 'Start Tracking');
+        },
+      ),
       backgroundColor: isTracking ? Colors.red : Colors.blue,
       icon: FaIcon(isTracking ? FontAwesomeIcons.stop : FontAwesomeIcons.play),
     );
@@ -119,7 +123,9 @@ class _MapPageState extends State<MapPage> {
           setState(() {});
 
           // Send new location to server
-          context.read<MapBloc>().add(MapEvent_SubmitLocation(position: latLng));
+          context
+              .read<MapBloc>()
+              .add(MapEvent_SubmitLocation(position: latLng));
         },
       );
     } on PlatformException catch (e) {

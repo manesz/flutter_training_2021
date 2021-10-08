@@ -1,0 +1,83 @@
+{
+  "project_info": {
+    "project_number": "72960935841",
+    "firebase_url": "https://androidpushdemo-50572.firebaseio.com",
+    "project_id": "androidpushdemo-50572",
+    "storage_bucket": "androidpushdemo-50572.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:72960935841:android:4f5f699e2c718258",
+        "android_client_info": {
+          "package_name": "com.cmcrashlytic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "72960935841-un9713hptj5orgg9lo34jrs84gg6c92f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVxJj1_8WKzjU8Xwn4XAYuQE3sfEORWps"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "72960935841-un9713hptj5orgg9lo34jrs84gg6c92f.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "72960935841-f4tet2pkpqpmhfahhpkrok84k0p7r8q4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.codemobiles.ios.mysiamgold.pro"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:72960935841:android:58937e0d9117f4bd5cade0",
+        "android_client_info": {
+          "package_name": "com.codemobiles.demo1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "72960935841-un9713hptj5orgg9lo34jrs84gg6c92f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVxJj1_8WKzjU8Xwn4XAYuQE3sfEORWps"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "72960935841-un9713hptj5orgg9lo34jrs84gg6c92f.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "72960935841-f4tet2pkpqpmhfahhpkrok84k0p7r8q4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.codemobiles.ios.mysiamgold.pro"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
